@@ -20,13 +20,13 @@ export function About(){
 export function Home(){
   return (
     <>
-      <div className="one-line">
+      <div className="home">
         <div>
-        <a href="https://forecasts-mws.vercel.app"><img className="icon" src=".\Screenshot (2674).png" alt="Forecasts"></img></a>
+        <a href="https://forecasts-mws.vercel.app"><img className="icon" src="\Screenshot (2674).png" alt="Forecasts"></img></a>
         <p>7-Day Forecasts</p>
         </div>
         <div>
-        <a href="https://observation-mws.vercel.app"><img className="icon" src=".\weather_station.png" alt="Observations"></img></a>
+        <a href="https://observation-mws.vercel.app"><img className="icon" src="\weather_station.png" alt="Observations"></img></a>
         <p>Current Observations</p>
         </div>
       </div>

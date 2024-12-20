@@ -10,7 +10,7 @@ nav ul {
   justify-content:space-between;
   list-style-type:none;
   background-color:beige;
-  margin-right:1000px;
+  margin-right:clamp(45vw,45vw,1000px);
   margin-top:50px;
   margin-bottom:50px;
   font-family:sans-serif;
@@ -18,12 +18,15 @@ nav ul {
   padding:20px;
   padding-right:40px;
   padding-left:40px;
+  
 
 }
 
 nav ul li{
+  display:flex;
   border:10px;
   color:bisque;
+  
 }
 
 a:hover{
@@ -39,7 +42,15 @@ a:hover{
 }
 
 .about{
-  margin-right:700px;
+  margin-right:clamp(40%,40%,400px);
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size:16px;
+
+}
+
+.home{
+  display:flex;
+  flex-direction:row;
+  flex-flow:row wrap;
+  flex-wrap:wrap;
 }
