@@ -50,7 +50,15 @@ export function NavBar(){
 }
 
 function App() {
-  
+  let [time,setTime]=useState(null);
+  let [utcTime,setUtcTime]=useState(null);
+  function getTime(){
+    setTime(new Date().toString().substring(16,24))
+    setUtcTime((new Date().toUTCString().substring(17,26)))
+  }
+
+  setInterval(getTime,1000)
+ 
 
   return (
     <>
@@ -62,6 +70,23 @@ function App() {
         </div>
         
         <h4>Welcome to our website! </h4>
+        <br></br>
+        <label htmlFor="time"><b>CURRENT TIME</b></label>
+        <table id="time">
+          <tbody>
+            <tr>
+              <th>LOCAL</th>
+              
+              <th>UTC</th>
+            </tr>
+            <tr>
+              <td>{time}</td>
+              <td>{utcTime}</td>
+            </tr>
+          </tbody>
+          
+        </table>
+        
         
         <NavBar />
         <Routes>

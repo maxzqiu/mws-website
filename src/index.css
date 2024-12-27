@@ -60,3 +60,13 @@ a:hover{
   flex-wrap:wrap;
 }
 
+table th {
+  font-size:18px;
+}
+
+table, tr, td {
+  border:1px solid black;
+  font-size:24px;
+  
+}
+
