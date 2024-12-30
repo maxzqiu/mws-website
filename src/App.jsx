@@ -50,20 +50,22 @@ export function NavBar(){
 }
 
 function App() {
-  let [time,setTime]=useState(null);
+  /* let [time,setTime]=useState(null);
   let [utcTime,setUtcTime]=useState(null);
   function getTime(){
     setTime(new Date().toString().substring(16,24))
     setUtcTime((new Date().toUTCString().substring(17,26)))
   }
 
-  setInterval(getTime,1000)
+  setInterval(getTime,1000) */
  
 
   return (
     <>
+      <p>Error: Not Found</p>
+      <p>Please contact MWS if you think this is an issue.</p>
       
-      <Router>
+      {/* <Router>
         <div className="one-line">
           <h2>Max's Weather Service Newport Beach CA</h2>
           <img className="logo" src=".\Screenshot (1053).png" alt="MWS Logo"></img>
@@ -96,7 +98,7 @@ function App() {
         <br></br>
         <br></br>
         <p>This website is still being built! Make sure to check back later to see new features! </p>
-      </Router>
+      </Router> */}
       
     </>
     
