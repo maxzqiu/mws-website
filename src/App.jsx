@@ -12,7 +12,7 @@ export function Presentations(){
         <button><Link to="/presentations/santa-ana-winds-in-southern-california">
         <div>
           <p>Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires</p>
-          <img width="500px" src="santa-ana-winds-poster.png" alt="Santa Ana Winds Presentation Poster"></img>
+          <img width="500px" src="/santa-ana-winds-poster.png" alt="Santa Ana Winds Presentation Poster"></img>
         </div>
         </Link></button>
       </div>
@@ -130,7 +130,7 @@ function App() {
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
-          name="Santa-Ana-Winds.pdf"
+          name="/Santa-Ana-Winds.pdf"
            />}></Route>
         </Routes>
         <br></br>
