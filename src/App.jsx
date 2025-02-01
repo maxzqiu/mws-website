@@ -130,7 +130,7 @@ function App() {
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
-          name="/public/Santa-Ana-Winds.pdf"
+          name="Santa-Ana-Winds.pdf"
            />}></Route>
         </Routes>
         <br></br>
