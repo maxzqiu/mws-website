@@ -70,3 +70,11 @@ table, tr, td {
   
 }
 
+.embed {
+  width:80vw;
+  height:80vh
+}
+
+.presentations button div img {
+  width:30vw;
+}
