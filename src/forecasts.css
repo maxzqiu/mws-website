@@ -1,0 +1,18 @@
+.table tbody tr th {
+    border:2px solid black;
+}
+
+.info-box p{
+    font-size:1.2em;
+    font-family:monospace;
+}
+
+.info-box {
+    border:2px solid black;
+}
+
+.important {
+    background-color:red;
+    color:white;
+    padding:3px;
+}

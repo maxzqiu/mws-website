@@ -1,8 +1,13 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
+import Forecasts from "./detailedForecasts"
+
+
+
+
 
 export function Presentations(){
   return (
@@ -47,6 +52,7 @@ export function WeatherReports(){
             
             >
     </embed>
+    
     </>
   )
 }
@@ -84,14 +90,34 @@ export function Home(){
 }
 
 export function NavBar(){
+  let [checked,setChecked]=useState(false);
+  
   return (
     <>
       <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/weather-reports">Weather Reports</Link></li>
-          <li><Link to="/presentations">MWS Presentations</Link></li>
-          <li><Link to="/about">About MWS</Link></li>
+      <button
+        className="toggle-menu"
+        onClick={() => {
+          if (checked) {
+            setChecked(false);
+          } else {
+            setChecked(true);
+          }
+        }}
+      >
+        <img className="menu" src="hamburger_menu.png"></img>
+      </button>
+
+        <ul className={checked ? "disappear" : ""} >
+          <div className="navigation-bar">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/forecasts">Forecasts</Link></li>
+            <li><Link to="/weather-reports">Weather Reports</Link></li>
+            <li><Link to="/presentations">Presentations</Link></li>
+            <li><Link to="/about">About MWS</Link></li>
+            
+          </div>
+          
           
         </ul>
       </nav>
@@ -108,8 +134,7 @@ function App() {
   }
 
   setInterval(getTime,1000)
- 
-
+  
   return (
     <>
       
@@ -121,10 +146,10 @@ function App() {
         </div>
         
         <h4>Welcome to our website! </h4>
-        
+       
         <br></br>
         <label htmlFor="time"><b>CURRENT TIME</b></label>
-        <table id="time">
+        <table id="time" className="time">
           <tbody>
             <tr>
               <th>LOCAL</th>
@@ -146,10 +171,11 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/weather-reports" element={<WeatherReports />}></Route>
+          <Route path="/forecasts" element={<Forecasts />}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
           name="/Santa-Ana-Winds.pdf"
-           />}></Route>
+          />}></Route>
           
         </Routes>
         <br></br>

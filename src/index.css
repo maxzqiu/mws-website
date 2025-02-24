@@ -1,3 +1,13 @@
+body {
+  background-color:rgb(240, 240, 229);
+}
+
+h4 {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+
 .icon{
   height:300px;
 
@@ -7,14 +17,14 @@
 
 p {
   font-size:clamp(12px,2.5vh,30px);
-  font-family:Georgia, 'Times New Roman', Times, serif
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-nav ul {
+nav ul div  {
   display:flex;
   justify-content:space-around;
   list-style-type:none;
-  background-color:beige;
+  background-color:rgb(213, 213, 204);
   margin-right:clamp(25vw,25vw,1000px);
   margin-top:50px;
   margin-bottom:50px;
@@ -23,14 +33,15 @@ nav ul {
   padding:20px;
   padding-right:40px;
   padding-left:40px;
-  
+  border-radius:5em;
 
 }
 
-nav ul li{
+.navigation-bar li{
   display:flex;
   border:10px;
   color:bisque;
+  
   
 }
 
@@ -78,3 +89,36 @@ table, tr, td {
 .presentations button div img {
   width:30vw;
 }
+
+
+
+.disappear {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .toggle-menu {
+    display: none;
+  }
+  .disappear {
+    display: block;
+  }
+}
+
+@media (max-width: 1000px) {
+  .navigation-bar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  .menu {
+    width: 80%;
+  }
+  .toggle-menu {
+    width: 5em;
+  }
+}
+
