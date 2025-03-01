@@ -228,8 +228,10 @@ function Forecasts(){
     let [info,setInfo]=useState("hello");
     let [listofdates,setListofdates]=useState([]);
     let [update,setUpdate]=useState("");
+    let [loading,setLoading]=useState("LOADING");
     
     useEffect(()=>{
+      setLoading("LOADING")
       async function run(){
         
           
@@ -294,7 +296,7 @@ function Forecasts(){
           }
           console.log(display);
         }
-        
+        setLoading("");
         setInfo(display);
         setListofdates(dates(data,product));
         
@@ -352,7 +354,7 @@ function Forecasts(){
           }
         }}>Next</button>
         <p>Unit of measurement is {UNITS[product]}</p>
-        
+        <p>{loading}</p>
         <table className="table">
           <tbody >
           <tr>
