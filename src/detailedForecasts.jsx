@@ -225,7 +225,7 @@ function Forecasts(){
     let [location,setLocation]=useState("Newport Beach");
     let [product,setProduct]=useState("temperature");
     let [scroll,setScroll]=useState(0);
-    let [info,setInfo]=useState("hello");
+    let [info,setInfo]=useState("");
     let [listofdates,setListofdates]=useState([]);
     let [update,setUpdate]=useState("");
     let [loading,setLoading]=useState("LOADING");
@@ -309,7 +309,7 @@ function Forecasts(){
     return (
       <>
         <h2>MWS Detailed Forecasts</h2>
-        <h4 className="important">IMPORTANT! This product is EXPERIMENTAL until March 31, 2025. Questions, comments or suggestions? Email maxzqiu@gmail.com.  </h4>
+        <h4 className="important">IMPORTANT! This product is EXPERIMENTAL until March 31, 2025. Questions, comments or suggestions? Let us know! </h4>
         <label htmlFor="location">Choose Location:</label>
         <select id="location" onChange={(e)=>{setLocation(e.target.value)}}>
           <option value="Newport Beach">Newport Beach</option>

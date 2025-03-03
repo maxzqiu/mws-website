@@ -73,6 +73,7 @@ export function About(){
 export function Home(){
   return (
     <>
+      <Link to="/forecasts/daily-hazards-table"><button>MWS General Forecast Product: Daily Hazards Table Info</button></Link>
       <div className="home">
         <div>
         <a href="https://forecasts-mws.vercel.app"><img className="icon" src="\Screenshot (2674).png" alt="Forecasts"></img></a>
@@ -171,11 +172,19 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/weather-reports" element={<WeatherReports />}></Route>
-          <Route path="/forecasts" element={<Forecasts />}></Route>
+          <Route path="/forecasts" element={
+            <>
+              
+              <Forecasts />
+            </>}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
           name="/Santa-Ana-Winds.pdf"
           />}></Route>
+          <Route path="/forecasts/daily-hazards-table" element={<CreatePage 
+          title="MWS Daily Hazards Table Information"
+          name="/daily-hazards-table-info.pdf"
+          />}/>
           
         </Routes>
         <br></br>
