@@ -7,13 +7,13 @@ const DIRECTORY={
   }
 
 const UNITS={
-  "temperature":"Farenheit",
-  "dewpoint":"Farenheit",
-  "maxTemperature":"Farenheit",
-  "minTemperature":"Farenheit",
+  "temperature":"Fahrenheit",
+  "dewpoint":"Fahrenheit",
+  "maxTemperature":"Fahrenheit",
+  "minTemperature":"Fahrenheit",
   "relativeHumidity":"Percent",
-  "apparentTemperature":"Farenheit",
-  "wetBulbGlobeTemperature":"Farenheit",
+  "apparentTemperature":"Fahrenheit",
+  "wetBulbGlobeTemperature":"Fahrenheit",
   "skyCover":"Percent",
   "windDirection":"Degrees",
   "windSpeed":"Knots",
