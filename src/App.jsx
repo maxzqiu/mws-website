@@ -65,7 +65,7 @@ export function About(){
         Our products include forecast discussions, text forecasts, and advisories during severe weather, all of which are available on email. 
         You can see our automated forecasts and observations at the links provided in the Home page. 
       </p>
-      <p className="about">Questions? Email maxzqiu@gmail.com and we will get back to you as soon as possible!  </p>
+      <p className="about">Questions? Email us and we will get back to you as soon as possible!  </p>
     </>
   )
 }
