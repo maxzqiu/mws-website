@@ -1,26 +1,6 @@
 import { useState,useEffect } from 'react'
 
-const DIRECTORY={
-    "Newport Beach":"https://api.weather.gov/gridpoints/SGX/38,57/",
-    "Los Angeles":"https://api.weather.gov/gridpoints/LOX/155,45/",
-    "Claremont":"https://api.weather.gov/gridpoints/LOX/174,44",
-  }
 
-const UNITS={
-  "temperature":"Fahrenheit",
-  "dewpoint":"Fahrenheit",
-  "maxTemperature":"Fahrenheit",
-  "minTemperature":"Fahrenheit",
-  "relativeHumidity":"Percent",
-  "apparentTemperature":"Fahrenheit",
-  "wetBulbGlobeTemperature":"Fahrenheit",
-  "skyCover":"Percent",
-  "windDirection":"Degrees",
-  "windSpeed":"Knots",
-  "windGust":"Knots",
-  "quantitativePrecipitation":"Inches",
-  "probabilityOfPrecipitation":"Percent",
-}
 
 function conversion(value,product){
   if (product==="temperature" || product==="dewpoint" || product==="maxTemperature" || product==="minTemperature" || product==="apparentTemperature" || product==="wetBulbGlobeTemperature"){
@@ -28,7 +8,9 @@ function conversion(value,product){
   } else if (product==="windSpeed" || product==="windGust"){
     return Math.round(value/1.852)
   } else if (product==="quantitativePrecipitation"){
-    return Math.round(value/25.4);
+    return Math.ceil((value/25.4)*100)/100;
+  } else if (product==="waveHeight" || product==="swellHeight" || product==="windWaveHeight") {
+    return Math.ceil((value*3.28)*10)/10
   } else {
     return Math.round(value);
   }
@@ -37,6 +19,7 @@ function conversion(value,product){
 function toReadableDate(str){
   return (str.substring(0,3))+" "+(str.substring(16,18))+":00";
 }
+
 
 // function parseDatesToLocal(date){
 //   let json=date;
@@ -97,6 +80,8 @@ function toReadableDate(str){
   
 //   return json.month+"/"+json.day+" "+json.hour+":00"
 // }
+
+
 
 function dates(data,product){
   
@@ -220,10 +205,10 @@ function toHours(validTime){
   }
 }
 
-function Forecasts(){
+function Forecasts({ products, locations, units }){
     let [data,setData]=useState(null);
-    let [location,setLocation]=useState("Newport Beach");
-    let [product,setProduct]=useState("temperature");
+    let [location,setLocation]=useState(Object.keys(locations)[0]);
+    let [product,setProduct]=useState((products)[0][0]);
     let [scroll,setScroll]=useState(0);
     let [info,setInfo]=useState("");
     let [listofdates,setListofdates]=useState([]);
@@ -237,10 +222,12 @@ function Forecasts(){
           
         
         
-        let res= await fetch(DIRECTORY[location]);
+        let res= await fetch(locations[location]);
         let data= await res.json();
         setData(data);
-        //console.log(data);
+        
+        console.log(data);
+        console.log(product)
         
         //console.log("CREATED! ")
         let display=[]
@@ -290,7 +277,7 @@ function Forecasts(){
         // }
         display=display.map((i)=>conversion(i,product));
         if (product==="maxTemperature" || product==="minTemperature"){
-          console.log("this has been ran")
+          
           for (let i=7;i<13;i+=1){
             display[i]=null;
           }
@@ -300,6 +287,7 @@ function Forecasts(){
         setInfo(display);
         setListofdates(dates(data,product));
         
+
       
       
       }
@@ -308,13 +296,12 @@ function Forecasts(){
     )
     return (
       <>
-        <h2>MWS Detailed Forecasts</h2>
+        
         <h4 className="important">IMPORTANT! This product is EXPERIMENTAL until March 31, 2025. Questions, comments or suggestions? Let us know! </h4>
         <label htmlFor="location">Choose Location:</label>
         <select id="location" onChange={(e)=>{setLocation(e.target.value)}}>
-          <option value="Newport Beach">Newport Beach</option>
-          <option value="Los Angeles">Los Angeles</option>
-          <option value="Claremont">Claremont</option>
+         
+          {Object.keys(locations).map((i,key)=><option key={key} value={i}>{i}</option>)}
         </select>
         <label htmlFor="productSelection">Select Product: </label>
       
@@ -323,19 +310,7 @@ function Forecasts(){
           setScroll(0);
           }}>
           
-          <option value="temperature">Temperature</option>
-          <option value="dewpoint">Dewpoint</option>
-          <option value="maxTemperature">Maximum Temperature</option>
-          <option value="minTemperature">Minimum Temperature</option>
-          <option value="relativeHumidity">Relative Humidity</option>
-          <option value="apparentTemperature">Apparent Temperature</option>
-          <option value="wetBulbGlobeTemperature">Wet Bulb Globe Temperature</option>
-          <option value="skyCover">Sky Cover</option>
-          <option value="windDirection">Wind Direction</option>
-          <option value="windSpeed">Wind Speed</option>
-          <option value="windGust">Wind Gust</option>
-          <option value="quantitativePrecipitation">Quantitative Precipitation Forecast - QPF</option>
-          <option value="probabilityOfPrecipitation">Probability of Precipitation</option>
+          {products.map((i,key)=><option key={key} value={i[0]}>{i[1]}</option>)}
   
         </select>
         <br></br>
@@ -353,8 +328,9 @@ function Forecasts(){
             setScroll(scroll+1);
           }
         }}>Next</button>
-        <p>Unit of measurement is {UNITS[product]}</p>
+        <p>Unit of measurement is {units[product]}</p>
         <p>{loading}</p>
+        <div className="one-line">
         <table className="table">
           <tbody >
           <tr>
@@ -390,6 +366,9 @@ function Forecasts(){
           </tr>
           </tbody>
         </table>
+        
+          
+        </div>
         <br></br>
         <div className="info-box">
           <p>MWS AUTOMATIC DAY 1-7 FORECASTS</p>

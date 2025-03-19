@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import Forecasts from "./detailedForecasts"
-
+import { LOCATIONS, UNITS, PRODUCTS, MARINELOCATIONS, MARINEPRODUCTS} from "./directory.jsx"
 
 
 
@@ -175,7 +175,9 @@ function App() {
           <Route path="/forecasts" element={
             <>
               
-              <Forecasts />
+              <button><Link to="/forecasts/marine">Click here for marine forecasts.</Link></button>
+              <h2>MWS Detailed Forecasts</h2>
+              <Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} />
             </>}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
@@ -185,6 +187,12 @@ function App() {
           title="MWS Daily Hazards Table Information"
           name="/daily-hazards-table-info.pdf"
           />}/>
+          <Route path="/forecasts/marine" 
+          element={
+            <>
+            <h2>MWS Detailed Marine Forecasts</h2>
+              <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} />
+            </>}></Route>
           
         </Routes>
         <br></br>
