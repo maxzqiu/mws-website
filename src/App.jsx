@@ -177,7 +177,7 @@ function App() {
               
               <button><Link to="/forecasts/marine">Click here for marine forecasts.</Link></button>
               <h2>MWS Detailed Forecasts</h2>
-              <Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} />
+              <Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} area="land" />
             </>}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
@@ -191,7 +191,7 @@ function App() {
           element={
             <>
             <h2>MWS Detailed Marine Forecasts</h2>
-              <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} />
+              <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} area={"marine"} />
             </>}></Route>
           
         </Routes>

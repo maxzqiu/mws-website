@@ -20,3 +20,42 @@
     color:white;
     padding:3px;
 }
+
+.potential-hazard{
+    width:8em;
+    height:5em;
+    table-layout:fixed;
+}
+
+.potential-hazard tr td{
+    height:5em;
+    text-align:center;
+    font-family:monospace;
+    white-space:nowrap;
+    font-weight:bold;
+    
+}
+
+.blue {
+    color:rgb(82, 82, 204);
+    
+}
+
+.yellow {
+    color:rgb(188, 188, 0);
+ 
+}
+
+.orange {
+    color:rgb(254, 165, 0);
+
+}
+
+.red {
+    color:red;
+    
+}
+.purple {
+    color:purple;
+   
+}
