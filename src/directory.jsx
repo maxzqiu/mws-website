@@ -44,8 +44,6 @@ export const PRODUCTS=[
 
 export const MARINEPRODUCTS=[
     ["temperature","Temperature"],
-    ["maxTemperature","Maximum Temperature"],
-    [ "minTemperature","Minimum Temperature"],
     ["apparentTemperature","Apparent Temperature"],
     ["skyCover","Sky Cover"],
     ["windDirection","Wind Direction"],

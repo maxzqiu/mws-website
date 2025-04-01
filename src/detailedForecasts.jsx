@@ -94,7 +94,7 @@ function dates(data,product){
   let daysOfWeek=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
   if (product==="maxTemperature" || product==="minTemperature"){
     let currentDay=(new Date).getDay();
-    console.log(currentDay);
+    //console.log(currentDay);
     for (let i=currentDay;i<currentDay+7;i+=1){
       dates.push(daysOfWeek[i]);
       
@@ -272,65 +272,65 @@ function Forecasts({ products, locations, units, area }){
     let [update,setUpdate]=useState("");
     let [loading,setLoading]=useState("LOADING");
     let [currentLocation,setCurrentLocation]=useState("");
-    let [hazards,setHazards]=useState(<td>NONE</td>);
+    let [hazards,setHazards]=useState(<td></td>);
     let [dataDirectory,setDataDirectory]=useState(null);
     
     let landHazards=["coldWeather","frost","freeze","excessiveHeat","fireWeather","wind","flooding","dmgWind","sgnftFlooding","pdsRedFlag"];
        
        let marineHazards=["mrglSmallCraft","smallCraft","nearGale","gale","hazardousSeas","lightning","storm","hurricane-force"];
        function scanHazards(index,dataDirectory){
-        console.log(index);
+        //console.log(index);
         setHazards("NONE");
         if (area==="land"){
          for (let i=0;i<landHazards.length+1;i+=1){
            for (let j=0;j<12;j+=1){
              if (i===0){ // Cold Weather
-               if (dataDirectory["temperature"][j+index]<42 || dataDirectory["apparentTemperature"][j+index]<37){
+               if (dataDirectory["temperature"][j+index]<=42 || dataDirectory["apparentTemperature"][j+index]<=37){
                  setHazards(<td className="blue">COLD</td>);
                } 
              }else if (i===1){
-               if (dataDirectory["temperature"][j+index]<36){
+               if (dataDirectory["temperature"][j+index]<=36){
                  setHazards(<td className="blue">FROST</td>);
                }
              } else if (i===2){
-               if (dataDirectory["temperature"][j+index]<32){
+               if (dataDirectory["temperature"][j+index]<=32){
                  setHazards(<td className="yellow">FREEZE</td>);
                }
              } else if (i===3){
-               if (dataDirectory["temperature"][j+index]>90 || dataDirectory["apparentTemperature"][j+index]>90 || dataDirectory["wetBulbGlobeTemperature"][j+index]>80){
+               if (dataDirectory["temperature"][j+index]>=90 || dataDirectory["apparentTemperature"][j+index]>=90 || dataDirectory["wetBulbGlobeTemperature"][j+index]>=80){
                  setHazards(<td className="orange">EXCESSIVE HEAT</td>);
                }
              } else if (i===4){
-              if (dataDirectory["windSpeed"][j+index]>25 || dataDirectory["windGust"][j+index]>45){
+              if (dataDirectory["windSpeed"][j+index]>=18 || dataDirectory["windGust"][j+index]>=34){
                 setHazards(<td className="yellow">WIND</td>);
               }
              } else if (i===5){
                
-               if (dataDirectory["windSpeed"][j+index]>20 && dataDirectory["relativeHumidity"][j+index]<25 && dataDirectory["temperature"][j+index]>50){
+               if (dataDirectory["windSpeed"][j+index]>=15 && dataDirectory["relativeHumidity"][j+index]<=25 && dataDirectory["temperature"][j+index]>=40){
                 setHazards(<td className="orange">RED FLAG</td>);
-              } else if (dataDirectory["windGust"][++index]>40 && dataDirectory["relativeHumidity"][j+index]<25 && dataDirectory["temperature"][j+index]>50){
+              } else if (dataDirectory["windGust"][++index]>=35 && dataDirectory["relativeHumidity"][j+index]<=25 && dataDirectory["temperature"][j+index]>=40){
                 setHazards(<td className="orange">RED FLAG</td>);
-              } else if (dataDirectory["windGust"][j+index]>30 && dataDirectory["relativeHumidity"][j+index]<15 && dataDirectory["temperature"][j+index]>50){
+              } else if (dataDirectory["windGust"][j+index]>=25 && dataDirectory["relativeHumidity"][j+index]<=15 && dataDirectory["temperature"][j+index]>=40){
                 setHazards(<td className="orange">RED FLAG</td>);
               }
              } else if (i===6){
-               if (dataDirectory["quantitativePrecipitation"][j+index]>0.5){
+               if (dataDirectory["quantitativePrecipitation"][j+index]>=0.5){
                  setHazards(<td className="orange">FLOODING</td>);
                }
              } else if (i===7){
-               if (dataDirectory["windSpeed"][j+index]>35 || dataDirectory["windGust"][j+index]>60){
+               if (dataDirectory["windSpeed"][j+index]>=25 || dataDirectory["windGust"][j+index]>=50){
                  setHazards(<td className="red">DAMAGING WIND</td>);
                }
              } else if (i===8){
-               if (dataDirectory["quantitativePrecipitation"][j+index]>1){
+               if (dataDirectory["quantitativePrecipitation"][j+index]>=1){
                  setHazards(<td className="purple">SGNFT FLOODING</td>);
                }
              } else if (i===9){
-               if (dataDirectory["windSpeed"][j+index]>30 && dataDirectory["relativeHumidity"][j+index]<15 && dataDirectory["temperature"][j+index]>60){
+               if (dataDirectory["windSpeed"][j+index]>=25 && dataDirectory["relativeHumidity"][j+index]<=15 && dataDirectory["temperature"][j+index]>=50){
                  setHazards(<td className="purple">PDS RED FLAG</td>);
-               } else if (dataDirectory["windGust"][j+index]>55 && dataDirectory["relativeHumidity"][j+index]<10 && dataDirectory["temperature"][j+index]>60){
+               } else if (dataDirectory["windGust"][j+index]>=45 && dataDirectory["relativeHumidity"][j+index]<=10 && dataDirectory["temperature"][j+index]>=50){
                  setHazards(<td className="purple">PDS RED FLAG</td>);
-               } else if (dataDirectory["windGust"][j+index]>35 && dataDirectory["relativeHumidity"][j+index]<7 && dataDirectory["temperature"][j+index]>60){
+               } else if (dataDirectory["windGust"][j+index]>=40 && dataDirectory["relativeHumidity"][j+index]<=7 && dataDirectory["temperature"][j+index]>=50){
                  setHazards(<td className="purple">PDS RED FLAG</td>);
                }
              } 
@@ -395,8 +395,8 @@ function Forecasts({ products, locations, units, area }){
           data= await res.json();
           setData(data);
           setCurrentLocation(location);
-          console.log("The API is called. ")
-          console.log(data);
+          //console.log("The API is called. ")
+          //console.log(data);
         }
         setUpdate((data.properties.updateTime).substring(11,13)+(data.properties.updateTime).substring(14,16));
         
@@ -411,10 +411,10 @@ function Forecasts({ products, locations, units, area }){
         for (let i=0;i<products.length;i+=1){
           dataDir[products[i][0]]=createData(data,products[i][0],conversion)
         }
-        console.log(dataDir);
+        //console.log(dataDir);
         setInfo(createData(data,product,conversion));
         setListofdates(dates(data,product));
-        console.log(dates(data,product))
+        //.log(dates(data,product))
 
 
         setDataDirectory(dataDir);
@@ -422,8 +422,14 @@ function Forecasts({ products, locations, units, area }){
             Marine hazards: Mrgl Small Craft, Small Craft, Near-Gale, Gale, Hazardous Seas, Lightning, Storm, Hurricane-Force
         */
        
-       
-        scanHazards(0,dataDir);
+        if (product!=="maxTemperature" && product!=="minTemperature"){
+          scanHazards(0,dataDir);
+          
+        } else {
+          setHazards(<td></td>);
+         
+        }
+        
 
         
       
@@ -436,7 +442,7 @@ function Forecasts({ products, locations, units, area }){
     return (
       <>
         
-        <h4 className="important">IMPORTANT! This product is EXPERIMENTAL until March 31, 2025. Questions, comments or suggestions? Let us know! </h4>
+        <h4 className="important">IMPORTANT! The POTENTIAL HAZARD product is EXPERIMENTAL until April 30, 2025. Questions, comments or suggestions? Let us know! </h4>
         <label htmlFor="location">Choose Location:</label>
         <select id="location" onChange={(e)=>{setLocation(e.target.value)}}>
          
@@ -454,25 +460,39 @@ function Forecasts({ products, locations, units, area }){
         </select>
         <br></br>
         <button onClick={()=>{
-          if (scroll===0){
+          if (product==="maxTemperature" || product==="minTemperature"){
+            setHazards(<td></td>);
+            
+          
+          }else if (scroll===0){
             scanHazards(0,dataDirectory);
+            
             return;
             
           } else {
             setScroll(scroll-1);
             scanHazards(scroll-1,dataDirectory);
+        
           }
         }}>Previous</button>
         <button onClick={()=>{
-          if (scroll===(info.length)-1){
-
+          if (product==="maxTemperature" || product==="minTemperature"){
+            
+            setHazards(<td></td>)
+      
+          
+          } else if (scroll===(info.length)-1){
+         
             return;
           } else if (scroll===(info.length)-12){
             setScroll(scroll+1);
+        
           
           } else {
+            console.log(product);
             setScroll(scroll+1);
             scanHazards(scroll+1,dataDirectory);
+           console.log("Scanning!!!")
           }
         }}>Next</button>
         <p>Unit of measurement is {units[product]}</p>
@@ -496,7 +516,7 @@ function Forecasts({ products, locations, units, area }){
           </tr>
           
           
-          <tr>
+          <tr className="numbers">
             <td>{(info[0+scroll])}</td>
             <td>{(info[1+scroll])}</td>
             <td>{(info[2+scroll])}</td>
@@ -528,7 +548,7 @@ function Forecasts({ products, locations, units, area }){
         </div>
         <br></br>
         <div className="info-box">
-          <p>MWS AUTOMATIC DAY 1-7 FORECASTS</p>
+          <p>DAY 1-7 FORECASTS</p>
           <p>ISSUED {update} UTC</p>
           <p>FORECASTER: AUTO</p>
         </div>

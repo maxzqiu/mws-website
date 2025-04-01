@@ -4,6 +4,14 @@
 
 .table tbody tr th {
     border:2px solid black;
+    text-align:center;
+}
+
+
+
+.table tbody .numbers{
+    text-align:center;
+    font-family:monospace;
 }
 
 .info-box p{

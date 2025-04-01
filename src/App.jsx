@@ -45,6 +45,7 @@ export function WeatherReports(){
     <>
       <h2>Latest MWS Weather Report</h2>
       <p>Note: Please double check the date to make sure you are not viewing an outdated presentation! </p>
+      <p>This display may not work on mobile phones. A laptop or desktop computer is recommended.</p>
       <embed
             src={"/weather-report.pdf"}
             type="application/pdf"
