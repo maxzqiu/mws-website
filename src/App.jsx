@@ -176,7 +176,7 @@ function App() {
           <Route path="/forecasts" element={
             <>
               
-              <button><Link to="/forecasts/marine">Click here for marine forecasts.</Link></button>
+              <button className="go-to-marine"><Link to="/forecasts/marine">Click here for marine forecasts.</Link></button>
               <h2>MWS Detailed Forecasts</h2>
               <Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} area="land" />
             </>}></Route>

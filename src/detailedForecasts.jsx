@@ -443,58 +443,99 @@ function Forecasts({ products, locations, units, area }){
       <>
         
         <h4 className="important">IMPORTANT! The POTENTIAL HAZARD product is EXPERIMENTAL until April 30, 2025. Questions, comments or suggestions? Let us know! </h4>
+        
+        <div className="toggle">
         <label htmlFor="location">Choose Location:</label>
-        <select id="location" onChange={(e)=>{setLocation(e.target.value)}}>
-         
-          {Object.keys(locations).map((i,key)=><option key={key} value={i}>{i}</option>)}
-        </select>
-        <label htmlFor="productSelection">Select Product: </label>
+          <select id="location" onChange={(e)=>{setLocation(e.target.value)}}>
+          
+            {Object.keys(locations).map((i,key)=><option key={key} value={i}>{i}</option>)}
+          </select>
+          <label htmlFor="productSelection">Select Product: </label>
+          
+          <select id="productSelection" onChange={(e)=>{
+            setProduct(e.target.value);
+            }}>
+            
+            {products.map((i,key)=><option key={key} value={i[0]}>{i[1]}</option>)}
+    
+          </select>
+          <br></br>
         
-        <select id="productSelection" onChange={(e)=>{
-          setProduct(e.target.value);
-          setScroll(0);
-          }}>
+          <button onClick={()=>{
+            if (product==="maxTemperature" || product==="minTemperature"){
+              setHazards(<td></td>);
+              
+            
+            }else if (scroll===0){
+              scanHazards(0,dataDirectory);
+              
+              return;
+              
+            } else {
+              setScroll(0);
+              scanHazards(0,dataDirectory);
           
-          {products.map((i,key)=><option key={key} value={i[0]}>{i[1]}</option>)}
-  
-        </select>
-        <br></br>
-        <button onClick={()=>{
-          if (product==="maxTemperature" || product==="minTemperature"){
-            setHazards(<td></td>);
+            }
+          }}
+          >Return to Beginning</button>
+          <button onClick={()=>{
+            if (product==="maxTemperature" || product==="minTemperature"){
+              setHazards(<td></td>);
+              
             
+            }else if (scroll===0){
+              scanHazards(0,dataDirectory);
+              
+              return;
+              
+            } else {
+              setScroll(scroll-1);
+              scanHazards(scroll-1,dataDirectory);
           
-          }else if (scroll===0){
-            scanHazards(0,dataDirectory);
-            
-            return;
-            
-          } else {
-            setScroll(scroll-1);
-            scanHazards(scroll-1,dataDirectory);
+            }
+          }}>Previous</button>
+          <button onClick={()=>{
+            if (product==="maxTemperature" || product==="minTemperature"){
+              
+              setHazards(<td></td>)
         
-          }
-        }}>Previous</button>
-        <button onClick={()=>{
-          if (product==="maxTemperature" || product==="minTemperature"){
             
-            setHazards(<td></td>)
-      
+            } else if (scroll===(info.length)-1){
           
-          } else if (scroll===(info.length)-1){
-         
-            return;
-          } else if (scroll===(info.length)-12){
-            setScroll(scroll+1);
+              return;
+            } else if (scroll===(info.length)-12){
+              setScroll(scroll+1);
+          
+            
+            } else {
+              //console.log(product);
+              setScroll(scroll+1);
+              scanHazards(scroll+1,dataDirectory);
+
+            }
+          }}>Next</button>
+          <button onClick={()=>{
+            if (product==="maxTemperature" || product==="minTemperature"){
+              
+              setHazards(<td></td>)
         
+            
+            } else if (scroll===(info.length)-1){
           
-          } else {
-            console.log(product);
-            setScroll(scroll+1);
-            scanHazards(scroll+1,dataDirectory);
-           console.log("Scanning!!!")
-          }
-        }}>Next</button>
+              return;
+            } else if (scroll===(info.length)-12){
+              setScroll(scroll+12);
+          
+            
+            } else {
+              //console.log(product);
+              setScroll(scroll+12);
+              scanHazards(scroll+12,dataDirectory);
+            
+            }
+          }}>Skip Faster</button>
+        </div>
+        
         <p>Unit of measurement is {units[product]}</p>
         <p>{loading}</p>
         <div className="one-line">

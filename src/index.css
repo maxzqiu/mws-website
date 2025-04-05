@@ -35,14 +35,11 @@ nav ul div  {
   padding-left:40px;
   border-radius:5em;
 
+
 }
 
-.navigation-bar li{
-  display:flex;
-  border:10px;
-  color:bisque;
-  
-  
+nav ul div li{
+  text-decoration:none;
 }
 
 a:hover{
@@ -122,3 +119,6 @@ table, tr, td {
   }
 }
 
+.go-to-marine{
+  height:3em;
+}
