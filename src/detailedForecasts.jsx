@@ -275,7 +275,7 @@ function Forecasts({ products, locations, units, area }){
     let [hazards,setHazards]=useState(<td></td>);
     let [dataDirectory,setDataDirectory]=useState(null);
     
-    let landHazards=["coldWeather","frost","freeze","excessiveHeat","fireWeather","wind","flooding","dmgWind","sgnftFlooding","pdsRedFlag"];
+    let landHazards=["coldWeather","frost","freeze","excessiveHeat","fireWeather","wind","flooding","dmgWind","extremeHeat","sgnftFlooding","pdsRedFlag"];
        
        let marineHazards=["mrglSmallCraft","smallCraft","nearGale","gale","hazardousSeas","lightning","storm","hurricane-force"];
        function scanHazards(index,dataDirectory){
@@ -297,7 +297,7 @@ function Forecasts({ products, locations, units, area }){
                  setHazards(<td className="yellow">FREEZE</td>);
                }
              } else if (i===3){
-               if (dataDirectory["temperature"][j+index]>=90 || dataDirectory["apparentTemperature"][j+index]>=90 || dataDirectory["wetBulbGlobeTemperature"][j+index]>=80){
+               if (dataDirectory["temperature"][j+index]>=90 || dataDirectory["apparentTemperature"][j+index]>=90 || dataDirectory["wetBulbGlobeTemperature"][j+index]>=85){
                  setHazards(<td className="orange">EXCESSIVE HEAT</td>);
                }
              } else if (i===4){
@@ -322,10 +322,14 @@ function Forecasts({ products, locations, units, area }){
                  setHazards(<td className="red">DAMAGING WIND</td>);
                }
              } else if (i===8){
+              if (dataDirectory["temperature"][j+index]>=100 || dataDirectory["apparentTemperature"][j+index]>100 || dataDirectory["wetBulbGlobeTemperature"][j+index]>88){
+                setHazards(<td className="red">EXTREMELY DANGEROUS HEAT</td>)
+              }
+             }else if (i===9){
                if (dataDirectory["quantitativePrecipitation"][j+index]>=1){
                  setHazards(<td className="purple">SGNFT FLOODING</td>);
                }
-             } else if (i===9){
+             } else if (i===10){
                if (dataDirectory["windSpeed"][j+index]>=25 && dataDirectory["relativeHumidity"][j+index]<=15 && dataDirectory["temperature"][j+index]>=50){
                  setHazards(<td className="purple">PDS RED FLAG</td>);
                } else if (dataDirectory["windGust"][j+index]>=45 && dataDirectory["relativeHumidity"][j+index]<=10 && dataDirectory["temperature"][j+index]>=50){
@@ -423,7 +427,7 @@ function Forecasts({ products, locations, units, area }){
         */
        
         if (product!=="maxTemperature" && product!=="minTemperature"){
-          scanHazards(0,dataDir);
+          scanHazards(scroll,dataDir);
           
         } else {
           setHazards(<td></td>);

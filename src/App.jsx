@@ -15,10 +15,28 @@ export function Presentations(){
       <h2>MWS Presentations</h2>
       <div className="presentations">
         <button><Link to="/presentations/santa-ana-winds-in-southern-california">
-        <div>
-          <p>Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires</p>
+        
+          
           <img width="500px" src="/santa-ana-winds-poster.png" alt="Santa Ana Winds Presentation Poster"></img>
-        </div>
+        
+        </Link></button>
+        <button><Link to="/presentations/upper-level-and-surface-high-and-low-pressure">
+        
+        
+          <img width="500px" src="/high-and-low-pressure-poster.png" alt="High and Low Pressure Presentation Poster"></img>
+        
+        </Link></button>
+        <button><Link to="/presentations/causes-of-the-marine-layer-in-coastal-southern-california">
+        
+ 
+          <img width="500px" src="/marine-layer-poster.png" alt="The Marine Layer Presentation Poster"></img>
+        
+        </Link></button>
+        <button><Link to="/presentations/active-wildfire-season-2024">
+        
+ 
+          <img width="500px" src="/wildfire-season-poster.png" alt="Active Wildfire Season Presentation Poster"></img>
+        
         </Link></button>
       </div>
       
@@ -184,16 +202,29 @@ function App() {
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
           name="/Santa-Ana-Winds.pdf"
           />}></Route>
+
           <Route path="/forecasts/daily-hazards-table" element={<CreatePage 
           title="MWS Daily Hazards Table Information"
           name="/daily-hazards-table-info.pdf"
           />}/>
+          <Route path="/presentations/upper-level-and-surface-high-and-low-pressure" 
+          element={<CreatePage  title="Upper Level and Surface High and Low Pressure"
+            name="/upper-level-and-surface-high-and-low-pressure.pdf" />
+          }
+          ></Route>
+          <Route path="/presentations/causes-of-the-marine-layer-in-coastal-southern-california" 
+          element={<CreatePage title="Causes of the Marine Layer in Coastal Southern California"
+          name="/the-marine-layer-in-coastal-southern-california.pdf"/>}></Route>
+          <Route path="/presentations/active-wildfire-season-2024" 
+          element={<CreatePage title="An Active Wildfire Season is Expected In Fall 2024"
+          name="/Very-Active-Wildfire-Season.pdf"/>}></Route>
           <Route path="/forecasts/marine" 
           element={
             <>
             <h2>MWS Detailed Marine Forecasts</h2>
               <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} area={"marine"} />
             </>}></Route>
+          
           
         </Routes>
         <br></br>
