@@ -595,7 +595,6 @@ function Forecasts({ products, locations, units, area }){
         <div className="info-box">
           <p>DAY 1-7 FORECASTS</p>
           <p>ISSUED {update} UTC</p>
-          <p>FORECASTER: AUTO</p>
         </div>
         
       </>
