@@ -62,10 +62,29 @@ export function WeatherReports(){
   return (
     <>
       <h2>Latest MWS Weather Report</h2>
+      <h4><Link to="/weather-reports/minnesota">Click here to see Minnesota weather reports! </Link></h4>
       <p>Note: Please double check the date to make sure you are not viewing an outdated presentation! </p>
       <p>This display may not work on mobile phones. A laptop or desktop computer is recommended.</p>
       <embed
             src={"/weather-report.pdf"}
+            type="application/pdf"
+            className="embed"
+            
+            >
+    </embed>
+    
+    </>
+  )
+}
+
+export function MNWeatherReports(){
+  return (
+    <>
+      <h2>Latest Minnesota Weather Report</h2>
+      <p>Note: Please double check the date to make sure you are not viewing an outdated presentation! </p>
+      <p>This display may not work on mobile phones. A laptop or desktop computer is recommended.</p>
+      <embed
+            src={"/mn-weather-report.pdf"}
             type="application/pdf"
             className="embed"
             
@@ -191,6 +210,7 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/weather-reports" element={<WeatherReports />}></Route>
+          <Route path="/weather-reports/minnesota" element={<MNWeatherReports />}></Route>
           <Route path="/forecasts" element={
             <>
               

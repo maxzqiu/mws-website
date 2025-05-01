@@ -446,7 +446,7 @@ function Forecasts({ products, locations, units, area }){
     return (
       <>
         
-        <h4 className="important">IMPORTANT! The POTENTIAL HAZARD product is EXPERIMENTAL until April 30, 2025. Questions, comments or suggestions? Let us know! </h4>
+        {/*<h4 className="important">IMPORTANT! The POTENTIAL HAZARD product is EXPERIMENTAL until April 30, 2025. Questions, comments or suggestions? Let us know! </h4>*/}
         
         <div className="toggle">
         <label htmlFor="location">Choose Location:</label>
