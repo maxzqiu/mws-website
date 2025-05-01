@@ -149,7 +149,7 @@ function App() {
   let [time,setTime]=useState(null);
   let [utcTime,setUtcTime]=useState(null);
   function getTime(){
-    setTime(new Date().toString().substring(16,24))
+    setTime(new Date().toLocaleString("en-GB", {timeZone: "America/Los_Angeles"}).toString().substring(12,20))
     setUtcTime((new Date().toUTCString().substring(17,26)))
   }
 
