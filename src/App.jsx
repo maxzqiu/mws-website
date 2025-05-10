@@ -202,7 +202,7 @@ function App() {
           </tbody>
           
         </table>
-        
+        <p className="yellow"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS trip this summer will become available on Thursday, July 10, 2025. Click the FORECASTS tab to view the forecasts. </b></p>
         
         <NavBar />
         <Routes>
