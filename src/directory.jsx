@@ -25,6 +25,12 @@ export const UNITS={
   "primarySwellDirection":"Degrees",
   "windWaveHeight":"Feet",
   "lightningActivityLevel":"Lightning Activity Level",
+  "probabilityOfThunder":"Percent",
+  "snowfallAmount":"Inches",
+  "snowLevel":"Feet",
+  "iceAccumulation":"Inches",
+
+  
 }
 
 export const PRODUCTS=[
@@ -41,6 +47,10 @@ export const PRODUCTS=[
     ["windGust","Wind Gust"],
     ["quantitativePrecipitation","Quantitative Precipitation Forecast - QPF"],
     ["probabilityOfPrecipitation","Probability of Precipitation"],
+    ["probabilityOfThunder","Probability of Thunder"],
+    ["snowfallAmount","Snowfall Amount"],
+    ["snowLevel","Snow Level"],
+    ["iceAccumulation","Ice Accumulation"]
 ]
 
 export const MARINEPRODUCTS=[
@@ -63,4 +73,5 @@ export const MARINEPRODUCTS=[
 
 export const MARINELOCATIONS={
     "Nearshore Waters of Southern California from Newport Beach Harbor and out 5 NM":"https://api.weather.gov/gridpoints/LOX/163,23",
+    "Nearshore Waters of Lake Superior from Duluth MN and out 5 NM":"https://api.weather.gov/gridpoints/DLH/93,69"
 }

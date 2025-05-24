@@ -11,7 +11,15 @@ function conversion(value,product){
     return Math.ceil((value/25.4)*100)/100;
   } else if (product==="waveHeight" || product==="swellHeight" || product==="windWaveHeight") {
     return Math.ceil((value*3.28)*10)/10
-  } else {
+  } else if (product==="snowAmount"){
+    return Math.ceil((value*0.039))
+  } else if (product==="iceAccumulation"){
+    return Math.ceil((value*0.039)*100)/100
+  }
+  else if (product==="snowLevel"){
+    return Math.ceil((value*3.28))
+  }
+   else {
     return Math.round(value);
   }
 }
@@ -206,6 +214,7 @@ function toHours(validTime){
 }
 
 function createData(data,product,conversion){
+  console.log(data);
     let display=[]
         let validTime=null;
         let current=0;
@@ -259,6 +268,8 @@ function createData(data,product,conversion){
           }
           
         }
+   
+
   return display;
 }
 
@@ -278,108 +289,203 @@ function Forecasts({ products, locations, units, area }){
     let landHazards=["coldWeather","frost","freeze","excessiveHeat","fireWeather","wind","flooding","dmgWind","extremeHeat","sgnftFlooding","pdsRedFlag"];
        
        let marineHazards=["mrglSmallCraft","smallCraft","nearGale","gale","hazardousSeas","lightning","storm","hurricane-force"];
-       function scanHazards(index,dataDirectory){
+       function scanHazards(index,table){
+
         //console.log(index);
         setHazards("NONE");
+
+
         if (area==="land"){
-         for (let i=0;i<landHazards.length+1;i+=1){
-           for (let j=0;j<12;j+=1){
-             if (i===0){ // Cold Weather
-               if (dataDirectory["temperature"][j+index]<=42 || dataDirectory["apparentTemperature"][j+index]<=37){
-                 setHazards(<td className="blue">COLD</td>);
-               } 
-             }else if (i===1){
-               if (dataDirectory["temperature"][j+index]<=36){
-                 setHazards(<td className="blue">FROST</td>);
-               }
-             } else if (i===2){
-               if (dataDirectory["temperature"][j+index]<=32){
-                 setHazards(<td className="yellow">FREEZE</td>);
-               }
-             } else if (i===3){
-               if (dataDirectory["temperature"][j+index]>=90 || dataDirectory["apparentTemperature"][j+index]>=90 || dataDirectory["wetBulbGlobeTemperature"][j+index]>=85){
-                 setHazards(<td className="orange">EXCESSIVE HEAT</td>);
-               }
-             } else if (i===4){
-              if (dataDirectory["windSpeed"][j+index]>=18 || dataDirectory["windGust"][j+index]>=34){
-                setHazards(<td className="yellow">WIND</td>);
+          if (location==="Maple Plain"){
+            for (let i=0;i<15;i+=1){
+              for (let j=0;j<12;j+=1){
+   
+                if (i===0){ 
+                 
+                  if (table["temperature"][j+index]<=36){
+   
+                    setHazards(<td className="blue">FROST</td>);
+                  } 
+                }else if (i===1){
+                  if (table["temperature"][j+index]<=32){
+                    setHazards(<td className="blue">FREEZE</td>);
+                  }
+                } else if (i===2){
+                  if (table["temperature"][j+index]<=10 || table["apparentTemperature"][j+index]<=10){
+                    setHazards(<td className="yellow">COLD</td>);
+                  }
+                } else if (i===3){
+                  if (table["snowfallAmount"][j+index]>=2 || table["iceAccumulation"][j+index]>=0.1){
+                    setHazards(<td className="yellow">WINTER WEATHER</td>);
+                  }
+                } else if (i===4){
+                 if (table["windSpeed"][j+index]>=20 || table["windGust"][j+index]>=34){
+                   setHazards(<td className="yellow">WIND</td>);
+                 }
+                } else if (i===5){
+                  if (table["temperature"][j+index]>=95 || table["apparentTemperature"][j+index]>=95 || table["wetBulbGlobeTemperature"][j+index]>=85){
+                    setHazards(<td className="orange">EXCESSIVE HEAT</td>)
+                  }
+                  
+                } else if (i===6){
+   
+                  if (table["windSpeed"][j+index]>=15 && table["relativeHumidity"][j+index]<=25 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="orange">RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=35 && table["relativeHumidity"][j+index]<=25 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="orange">RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=25 && table["relativeHumidity"][j+index]<=15 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="orange">RED FLAG</td>);
+                  }
+                } else if (i===7){
+                  if (table["snowfallAmount"][j+index]>=6 || table["iceAccumulation"][j+index]>=0.2){
+                    setHazards(<td className="orange">WINTER STORM</td>);
+                  }
+                } else if (i===8){
+                 if (table["quantitativePrecipitation"][j+index]>=1.5){
+                   setHazards(<td className="orange">FLOODING</td>)
+                 }
+                }else if (i===9){
+                  if (table["windSpeed"][j+index]>=30 || table["windSpeed"][j+index]>=50){
+                    setHazards(<td className="red">DAMAGING WIND</td>);
+                  }
+                } else if (i===10){
+                  if (table["iceAccumulation"][j+index]>=0.4){
+                    setHazards(<td className="red">ICE STORM</td>)
+                  }
+                } else if (i===11){
+                  if (table["temperature"][j+index]<=-15 || table["apparentTemperature"][j+index]<=-15){
+                    setHazards(<td className="red">EXTREMELY DANGEROUS COLD</td>)
+                  }
+                } else if (i===12){
+                  if ((table["windSpeed"][j+index]>=30 || table["windGust"][j+index]>=35) && table["snowfallAmount"][j+index]>=2){
+                    setHazards(<td className="purple">BLIZZARD</td>)
+                  }
+                } else if (i===13){
+                  if (table["temperature"][j+index]>=105 || table["apparentTemperature"][j+index]>=105 || table["wetBulbGlobeTemperature"][j+index]>=90){
+                    setHazards(<td className="purple">EXTREMELY DANGEROUS HEAT</td>)
+                  }
+                } else if (i===14){
+                  if (table["quantitativePrecipitation"][j+index]>=3){
+                    setHazards(<td className="purple">SGNFT FLOODING</td>)
+                  }
+                } else if (i===15){
+                  if (table["windSpeed"][j+index]>=25 && table["relativeHumidity"][j+index]<=15 && table["temperature"][j+index]>=60){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=45 && table["relativeHumidity"][j+index]<=10 && table["temperature"][j+index]>=60){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=40 && table["relativeHumidity"][j+index]<=7 && table["temperature"][j+index]>=60){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  }
+                }
               }
-             } else if (i===5){
-               
-               if (dataDirectory["windSpeed"][j+index]>=15 && dataDirectory["relativeHumidity"][j+index]<=25 && dataDirectory["temperature"][j+index]>=40){
-                setHazards(<td className="orange">RED FLAG</td>);
-              } else if (dataDirectory["windGust"][++index]>=35 && dataDirectory["relativeHumidity"][j+index]<=25 && dataDirectory["temperature"][j+index]>=40){
-                setHazards(<td className="orange">RED FLAG</td>);
-              } else if (dataDirectory["windGust"][j+index]>=25 && dataDirectory["relativeHumidity"][j+index]<=15 && dataDirectory["temperature"][j+index]>=40){
-                setHazards(<td className="orange">RED FLAG</td>);
-              }
-             } else if (i===6){
-               if (dataDirectory["quantitativePrecipitation"][j+index]>=0.5){
-                 setHazards(<td className="orange">FLOODING</td>);
-               }
-             } else if (i===7){
-               if (dataDirectory["windSpeed"][j+index]>=25 || dataDirectory["windGust"][j+index]>=50){
-                 setHazards(<td className="red">DAMAGING WIND</td>);
-               }
-             } else if (i===8){
-              if (dataDirectory["temperature"][j+index]>=100 || dataDirectory["apparentTemperature"][j+index]>100 || dataDirectory["wetBulbGlobeTemperature"][j+index]>88){
-                setHazards(<td className="red">EXTREMELY DANGEROUS HEAT</td>)
-              }
-             }else if (i===9){
-               if (dataDirectory["quantitativePrecipitation"][j+index]>=1){
-                 setHazards(<td className="purple">SGNFT FLOODING</td>);
-               }
-             } else if (i===10){
-               if (dataDirectory["windSpeed"][j+index]>=25 && dataDirectory["relativeHumidity"][j+index]<=15 && dataDirectory["temperature"][j+index]>=50){
-                 setHazards(<td className="purple">PDS RED FLAG</td>);
-               } else if (dataDirectory["windGust"][j+index]>=45 && dataDirectory["relativeHumidity"][j+index]<=10 && dataDirectory["temperature"][j+index]>=50){
-                 setHazards(<td className="purple">PDS RED FLAG</td>);
-               } else if (dataDirectory["windGust"][j+index]>=40 && dataDirectory["relativeHumidity"][j+index]<=7 && dataDirectory["temperature"][j+index]>=50){
-                 setHazards(<td className="purple">PDS RED FLAG</td>);
-               }
+            }
+          } else {
+            for (let i=0;i<11;i+=1){
+              for (let j=0;j<12;j+=1){
+   
+                if (i===0){ // Cold Weather
+                 
+                  if (table["temperature"][j+index]<=42 || table["apparentTemperature"][j+index]<=37){
+   
+                    setHazards(<td className="blue">COLD</td>);
+                  } 
+                }else if (i===1){
+                  if (table["temperature"][j+index]<=36){
+                    setHazards(<td className="blue">FROST</td>);
+                  }
+                } else if (i===2){
+                  if (table["temperature"][j+index]<=32){
+                    setHazards(<td className="yellow">FREEZE</td>);
+                  }
+                } else if (i===3){
+                  if (table["temperature"][j+index]>=90 || table["apparentTemperature"][j+index]>=90 || table["wetBulbGlobeTemperature"][j+index]>=85){
+                    setHazards(<td className="orange">EXCESSIVE HEAT</td>);
+                  }
+                } else if (i===4){
+                 if (table["windSpeed"][j+index]>=18 || table["windGust"][j+index]>=34){
+                   setHazards(<td className="yellow">WIND</td>);
+                 }
+                } else if (i===5){
+                  
+                  if (table["windSpeed"][j+index]>=15 && table["relativeHumidity"][j+index]<=25 && table["temperature"][j+index]>=40){
+                   setHazards(<td className="orange">RED FLAG</td>);
+                 } else if (table["windGust"][j+index]>=35 && table["relativeHumidity"][j+index]<=25 && table["temperature"][j+index]>=40){
+                   setHazards(<td className="orange">RED FLAG</td>);
+                 } else if (table["windGust"][j+index]>=25 && table["relativeHumidity"][j+index]<=15 && table["temperature"][j+index]>=40){
+                   setHazards(<td className="orange">RED FLAG</td>);
+                 }
+                } else if (i===6){
+   
+                  if (table["quantitativePrecipitation"][j+index]>=0.5){
+   
+                    setHazards(<td className="orange">FLOODING</td>);
+                  }
+                } else if (i===7){
+                  if (table["windSpeed"][j+index]>=25 || table["windGust"][j+index]>=50){
+                    setHazards(<td className="red">DAMAGING WIND</td>);
+                  }
+                } else if (i===8){
+                 if (table["temperature"][j+index]>=100 || table["apparentTemperature"][j+index]>100 || table["wetBulbGlobeTemperature"][j+index]>88){
+                   setHazards(<td className="red">EXTREMELY DANGEROUS HEAT</td>)
+                 }
+                }else if (i===9){
+                  if (table["quantitativePrecipitation"][j+index]>=1){
+                    setHazards(<td className="purple">SGNFT FLOODING</td>);
+                  }
+                } else if (i===10){
+                  if (table["windSpeed"][j+index]>=25 && table["relativeHumidity"][j+index]<=15 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=45 && table["relativeHumidity"][j+index]<=10 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  } else if (table["windGust"][j+index]>=40 && table["relativeHumidity"][j+index]<=7 && table["temperature"][j+index]>=50){
+                    setHazards(<td className="purple">PDS RED FLAG</td>);
+                  }
+          }
+
+         
              } 
                
              
              
-           }
+           } 
          }
        } else if (area==="marine"){
-         for (let i=0;i<marineHazards.length+1;i+=1){
+         for (let i=0;i<marineHazards.length-1;i+=1){
            for (let j=0;j<12;j+=1){
              if (i===0){
-               if (dataDirectory["windSpeed"][j+index]>=12 || dataDirectory["windGust"][j+index]>=15){
+               if (table["windSpeed"][j+index]>=12 || table["windGust"][j+index]>=15){
                  setHazards(<td className="blue">MRGL SMALL CRAFT</td>);
-               } else if (dataDirectory["waveHeight"][j+index]>=5){
+               } else if (table["waveHeight"][j+index]>=5){
                  setHazards(<td className="blue">MRGL SMALL CRAFT</td>)
                }
              } else if (i===1){
-               if (dataDirectory["windSpeed"][j+index]>=21 || dataDirectory["windGust"][j+index]>=21){
+               if (table["windSpeed"][j+index]>=21 || table["windGust"][j+index]>=21){
                  setHazards(<td className="yellow">SMALL CRAFT</td>)
-               } else if (dataDirectory["waveHeight"][j+index]>=7){
+               } else if (table["waveHeight"][j+index]>=7){
                  setHazards(<td className="yellow">SMALL CRAFT</td>)
                }
              } else if (i===2){
-               if (dataDirectory["windSpeed"][j+index]>=28 || dataDirectory["windGust"][j+index]>=28){
+               if (table["windSpeed"][j+index]>=28 || table["windGust"][j+index]>=28){
                  setHazards(<td className="orange">NEAR GALE</td>);
                }
              } else if (i===3){
-               if (dataDirectory["windSpeed"][j+index]>=34 || dataDirectory["windGust"][j+index]>=34){
+               if (table["windSpeed"][j+index]>=34 || table["windGust"][j+index]>=34){
                  setHazards(<td className="orange">GALE</td>);
                }
              } else if (i===4){
-               if (dataDirectory["waveHeight"][j+index]>=12){
+               if (table["waveHeight"][j+index]>=12){
                  setHazards(<td className="red">HAZARDOUS SEAS</td>)
                }
              } else if (i===5){
-               if (dataDirectory["lightningActivityLevel"][j+index]>=3){
+               if (table["lightningActivityLevel"][j+index]>=3){
                  setHazards(<td className="red">LIGHTNING</td>)
                }
              } else if (i===6){
-               if (dataDirectory["windSpeed"][j+index]>=48 || dataDirectory["windGust"][j+index]>=48){
+               if (table["windSpeed"][j+index]>=48 || table["windGust"][j+index]>=48){
                  setHazards(<td className="purple">STORM</td>)
                }
              } else if (i===7){
-               if (dataDirectory["windSpeed"][j+index]>=64 || dataDirectory["windGust"][j+index]>=64){
+               if (table["windSpeed"][j+index]>=64 || table["windGust"][j+index]>=64){
                  setHazards(<td className="purple">HURRICANE FORCE</td>)
                }
              } 
@@ -415,6 +521,10 @@ function Forecasts({ products, locations, units, area }){
         for (let i=0;i<products.length;i+=1){
           dataDir[products[i][0]]=createData(data,products[i][0],conversion)
         }
+
+        // dataDir["quantitativePrecipitation"][1]=1.6
+        // dataDir["quantitativePrecipitation"][2]=1.6
+
         //console.log(dataDir);
         setInfo(createData(data,product,conversion));
         setListofdates(dates(data,product));
@@ -425,7 +535,7 @@ function Forecasts({ products, locations, units, area }){
         /* Land hazards: Cold Weather, Frost, Freeze, Excessive Heat, Fire Weather, Wind, Flooding, Dmg Wind, Sgnft Flooding, PDS Red Flag, 
             Marine hazards: Mrgl Small Craft, Small Craft, Near-Gale, Gale, Hazardous Seas, Lightning, Storm, Hurricane-Force
         */
-       
+
         if (product!=="maxTemperature" && product!=="minTemperature"){
           scanHazards(scroll,dataDir);
           

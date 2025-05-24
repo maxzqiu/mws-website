@@ -111,7 +111,13 @@ export function About(){
 export function Home(){
   return (
     <>
-      <Link to="/forecasts/daily-hazards-table"><button>MWS General Forecast Product: Daily Hazards Table Info</button></Link>
+      <div className="news">
+        <h4 className="mws_info">MWS Info</h4>
+        <Link to="/info/daily-hazards-table"><button>MWS General Forecast Product: Daily Hazards Table Info</button></Link>
+        <br></br>
+        <Link to="/info/wet_bulb_globe_temp"><button>What is Wet Bulb Globe Temperature?</button></Link>
+      </div>
+      
       <div className="home">
         <div>
         <a href="https://forecasts-mws.vercel.app"><img className="icon" src="\Screenshot (2674).png" alt="Forecasts"></img></a>
@@ -202,7 +208,7 @@ function App() {
           </tbody>
           
         </table>
-        <p className="yellow"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS trip this summer will become available on Thursday, July 10, 2025. Click the FORECASTS tab to view the forecasts. </b></p>
+        <p className="yellow-header"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS trip this summer will become available on Thursday, July 10, 2025. Click the FORECASTS tab to view the forecasts. </b></p>
         
         <NavBar />
         <Routes>
@@ -223,7 +229,7 @@ function App() {
           name="/Santa-Ana-Winds.pdf"
           />}></Route>
 
-          <Route path="/forecasts/daily-hazards-table" element={<CreatePage 
+          <Route path="/info/daily-hazards-table" element={<CreatePage 
           title="MWS Daily Hazards Table Information"
           name="/daily-hazards-table-info.pdf"
           />}/>
@@ -244,6 +250,9 @@ function App() {
             <h2>MWS Detailed Marine Forecasts</h2>
               <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} area={"marine"} />
             </>}></Route>
+          <Route path="/info/wet_bulb_globe_temp" element={
+            <CreatePage title="What is Wet Bulb Globe Temperature?" name="/wet_bulb_globe_temp_info.pdf"></CreatePage>
+          }></Route>
           
           
         </Routes>

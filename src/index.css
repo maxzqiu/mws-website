@@ -79,8 +79,8 @@ table, tr, td {
 }
 
 .embed {
-  width:80vw;
-  height:80vh
+  width:90vw;
+  height:90vh
 }
 
 .presentations button div img {
@@ -127,9 +127,23 @@ table, tr, td {
   width:100em;
 }
 
-.yellow{
+.yellow-header{
   
   color:black;
   background-color:yellow;
  
 }
+
+.mws_info{
+  margin-top:0px;
+}
+.news{
+  border-style:solid;
+  border-width:2px;
+  border-color:black;
+  padding:0.5em;
+
+
+}
+
+
