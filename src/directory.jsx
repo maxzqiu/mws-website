@@ -2,7 +2,8 @@ export const LOCATIONS={
     "Newport Beach":"https://api.weather.gov/gridpoints/SGX/38,57/",
     "Los Angeles":"https://api.weather.gov/gridpoints/LOX/155,45/",
     "Claremont":"https://api.weather.gov/gridpoints/LOX/174,44",
-    "Maple Plain":"https://api.weather.gov/gridpoints/MPX/95,73"
+    "Maple Plain":"https://api.weather.gov/gridpoints/MPX/95,73",
+    "Redwood City":"https://api.weather.gov/gridpoints/MTR/98,135",
   }
 
 export const UNITS={
