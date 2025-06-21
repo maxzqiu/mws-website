@@ -147,3 +147,15 @@ table, tr, td {
 }
 
 
+@media (max-width:1000px){
+  .radar{
+    width:90vw;
+    height:auto;
+  }
+}
+@media (min-width:1000px){
+  .radar{
+    width:40vw;
+    height:auto;
+  }
+}

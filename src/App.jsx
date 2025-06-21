@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import Forecasts from "./detailedForecasts"
+import Radar from "./radar"
 import { LOCATIONS, UNITS, PRODUCTS, MARINELOCATIONS, MARINEPRODUCTS} from "./directory.jsx"
 
 
@@ -159,7 +160,10 @@ export function NavBar(){
             <li><Link to="/forecasts">Forecasts</Link></li>
             <li><Link to="/weather-reports">Weather Reports</Link></li>
             <li><Link to="/presentations">Presentations</Link></li>
+            <li><Link to="/radar">Radar</Link></li>
             <li><Link to="/about">About MWS</Link></li>
+
+            
             
           </div>
           
@@ -208,7 +212,7 @@ function App() {
           </tbody>
           
         </table>
-        <p className="yellow-header"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS trip this summer will become available on Thursday, July 10, 2025. Click the FORECASTS tab to view the forecasts. </b></p>
+        <p className="yellow-header"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS trip this summer will become available on Thursday, July 10, 2025. Click the FORECASTS tab to view the forecasts.</b></p>
         
         <NavBar />
         <Routes>
@@ -252,6 +256,9 @@ function App() {
             </>}></Route>
           <Route path="/info/wet_bulb_globe_temp" element={
             <CreatePage title="What is Wet Bulb Globe Temperature?" name="/wet_bulb_globe_temp_info.pdf"></CreatePage>
+          }></Route>
+          <Route path="/radar" element={
+            <Radar />
           }></Route>
           
           

@@ -4,8 +4,9 @@ export const LOCATIONS={
     "Claremont":"https://api.weather.gov/gridpoints/LOX/174,44",
     "Maple Plain":"https://api.weather.gov/gridpoints/MPX/95,73",
     "Redwood City":"https://api.weather.gov/gridpoints/MTR/98,135",
+    
   }
-
+// "Las Vegas":"https://api.weather.gov/gridpoints/VEF/122,94"
 export const UNITS={
   "temperature":"Fahrenheit",
   "dewpoint":"Fahrenheit",
