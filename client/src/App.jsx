@@ -109,11 +109,7 @@ export function About(){
   )
 }
 
-export function Admin(){
-  return (
-    <p>ADMIN PAGE</p>
-  )
-}
+
 
 export function Home(){
   return (
