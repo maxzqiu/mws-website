@@ -109,16 +109,23 @@ function dates(data,product){
     }
     return dates;
   } else {
-    currentDate=new Date(currentDate);
-  
-    currentDate=currentDate.getTime();
     let readable=""
-  
+    currentDate=new Date(currentDate);
+    currentDate=currentDate.toString()
+    readable=toReadableDate(currentDate);
+    dates.push(readable);
+
+    console.log(currentDate);
+    currentDate=(new Date(currentDate));
+    currentDate=currentDate.getTime();
+    console.log(currentDate);
+    
+    
     for (let i=0;i<200;i+=1){
       currentDate+=3600000;
       
       currentDate=(new Date(currentDate));
-      
+      console.log(currentDate);
       currentDate=currentDate.toString();
       
       readable=toReadableDate(currentDate);
@@ -196,6 +203,9 @@ function dates(data,product){
 }
 
 function toHours(validTime){
+  if (validTime.length===29){
+    return parseInt(validTime.substring(27,28))*24
+  }
   if (validTime.length===30){
     //console.log(parseInt(validTime.substring(28,29)));
     return parseInt(validTime.substring(28,29));
@@ -267,7 +277,9 @@ function createData(data,product,conversion){
             display[i]=null;
           }
           
+          
         }
+        console.log(display)
    
 
   return display;

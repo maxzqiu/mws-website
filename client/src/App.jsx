@@ -109,6 +109,12 @@ export function About(){
   )
 }
 
+export function Admin(){
+  return (
+    <p>ADMIN PAGE</p>
+  )
+}
+
 export function Home(){
   return (
     <>
@@ -212,7 +218,8 @@ function App() {
           </tbody>
           
         </table>
-        <p className="yellow-header"><b>PLEASE NOTE: Weather forecasts for the LAS VEGAS TRIP are NOW AVAILABLE! Click the FORECASTS tab, and under locations, click LAS VEGAS. </b></p>
+
+        
         
         <NavBar />
         <Routes>
