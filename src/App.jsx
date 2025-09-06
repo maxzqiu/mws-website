@@ -15,6 +15,18 @@ export function Presentations(){
     <>
       <h2>MWS Presentations</h2>
       <div className="presentations">
+      <button><Link to="/presentations/significant-wildfire-forecast-2025">
+        
+        
+        <img width="500px" src="/2025-26-wildfire-forecast-poster.png" alt="Significant Wildfire Forecast 2025/26 Poster"></img>
+      
+      </Link></button>
+      <button><Link to="/presentations/hail-vs-snow-sleet-freezing-rain">
+        
+        
+        <img width="500px" src="/hail-snow-sleet-freezing-rain-poster.png" alt="Hail vs. Snow/Sleet/Freezing Rain Poster"></img>
+      
+      </Link></button>
         <button><Link to="/presentations/santa-ana-winds-in-southern-california">
         
           
@@ -27,6 +39,7 @@ export function Presentations(){
           <img width="500px" src="/high-and-low-pressure-poster.png" alt="High and Low Pressure Presentation Poster"></img>
         
         </Link></button>
+        
         <button><Link to="/presentations/causes-of-the-marine-layer-in-coastal-southern-california">
         
  
@@ -197,7 +210,7 @@ function App() {
         </div>
         
         <h4>Welcome to our website! </h4>
-       
+        <h3 className="yellow-header">PLEASE NOTE: THE MWS WEBSITE WILL BE UNDERGOING SIGNIFICANT WEBSITE UPGRADES. INTERMITTENT OUTAGES/SLOWDOWNS ARE POSSIBLE. </h3>
         <br></br>
         <label htmlFor="time"><b>CURRENT TIME</b></label>
         <table id="time" className="time">
@@ -234,6 +247,16 @@ function App() {
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
           name="/Santa-Ana-Winds.pdf"
+          />}></Route>
+
+          <Route path="/presentations/significant-wildfire-forecast-2025" element={<CreatePage 
+          title="Significant Wildfire Forecast for 2025/26 Fall and Winter"
+          name="/Stroll Article Significant Fire Potential - Google Docs.pdf"
+          />}></Route>
+
+          <Route path="/presentations/hail-vs-snow-sleet-freezing-rain" element={<CreatePage 
+          title="Hail vs. Snow/Sleet/Freezing Rain Presentation"
+          name="/Hail vs. Snow_Sleet_Freezing Rain Presentation MWS.pdf"
           />}></Route>
 
           <Route path="/info/daily-hazards-table" element={<CreatePage 
