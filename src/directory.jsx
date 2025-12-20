@@ -3,7 +3,6 @@ export const LOCATIONS={
     "Los Angeles":"https://api.weather.gov/gridpoints/LOX/155,45/",
     "Claremont":"https://api.weather.gov/gridpoints/LOX/174,44",
     "Maple Plain":"https://api.weather.gov/gridpoints/MPX/95,73",
-    "Redwood City":"https://api.weather.gov/gridpoints/MTR/98,135",
     "Park City":"https://api.weather.gov/gridpoints/SLC/114,167"
   }
 // "Las Vegas":"https://api.weather.gov/gridpoints/VEF/122,94"
@@ -75,5 +74,4 @@ export const MARINEPRODUCTS=[
 
 export const MARINELOCATIONS={
     "Nearshore Waters of Southern California from Newport Beach Harbor and out 5 NM":"https://api.weather.gov/gridpoints/LOX/163,23",
-    "Nearshore Waters of Lake Superior from Duluth MN and out 5 NM":"https://api.weather.gov/gridpoints/DLH/93,69"
 }
