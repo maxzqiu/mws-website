@@ -11,7 +11,7 @@ function conversion(value,product){
     return Math.ceil((value/25.4)*100)/100;
   } else if (product==="waveHeight" || product==="swellHeight" || product==="windWaveHeight") {
     return Math.ceil((value*3.28)*10)/10
-  } else if (product==="snowAmount"){
+  } else if (product==="snowfallAmount"){
     return Math.ceil((value*0.039))
   } else if (product==="iceAccumulation"){
     return Math.ceil((value*0.039)*100)/100
@@ -101,10 +101,16 @@ function dates(data,product){
   currentDate=currentDate.substring(0,25);
   let daysOfWeek=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
   if (product==="maxTemperature" || product==="minTemperature"){
-    let currentDay=(new Date).getDay();
-    //console.log(currentDay);
+    currentDate=data.properties[product].values[0].validTime.substring(0,25);
+    let dateformat=new Date(currentDate);
+    let options = {weekday:"long"}
+    //let currentdaynumber=dateformat.toLocaleString(undefined,options)
+    let currentdaynumber=dateformat.getDay();
+    console.log(currentdaynumber);
+    let currentDay=currentdaynumber
+    console.log(currentDay);
     for (let i=currentDay;i<currentDay+7;i+=1){
-      dates.push(daysOfWeek[i]);
+       dates.push(daysOfWeek[i]);
       
     }
     return dates;
