@@ -25,22 +25,25 @@ nav ul div  {
   justify-content:space-around;
   list-style-type:none;
   background-color:rgb(213, 213, 204);
-  margin-right:clamp(25vw,25vw,1000px);
+  /*margin-right:clamp(20vw,25vw,900px);*/
   margin-top:50px;
   margin-bottom:50px;
+  margin-right:40px;
   font-family:sans-serif;
   font-size:24px;
   padding:20px;
   padding-right:40px;
   padding-left:40px;
   border-radius:5em;
-
+  
 
 }
 
 nav ul div li{
   text-decoration:none;
 }
+
+
 
 a:hover{
   background-color:gray;
@@ -75,6 +78,8 @@ table th {
 table, tr, td {
   border:1px solid black;
   font-size:24px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
   
 }
 
@@ -93,6 +98,8 @@ table, tr, td {
   display: none;
 }
 
+
+
 @media (min-width: 1000px) {
   .toggle-menu {
     display: none;
@@ -100,6 +107,7 @@ table, tr, td {
   .disappear {
     display: block;
   }
+  
 }
 
 @media (max-width: 1000px) {
@@ -159,3 +167,26 @@ table, tr, td {
     height:auto;
   }
 }
+
+@keyframes flash {
+  0% { background-color: rgb(220, 145, 16); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(220, 145, 16); }
+}
+
+.orange-alert{
+  animation: flash 1s step-start infinite;
+}
+
+.time{
+  table{
+    display:flex;
+    justify-content:center;
+  }
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  text-align:center;
+
+  
+}
+

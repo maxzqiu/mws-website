@@ -1,0 +1,16 @@
+.small-button{
+    margin:10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width:5em;
+    height:2em;
+}
+
+.forecast-select-field{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 10em;
+    height:3em;
+    margin-left:0.5em;
+    margin-bottom:1em;
+    font-size:1em;
+
+}

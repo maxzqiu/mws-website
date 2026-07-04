@@ -1,0 +1,22 @@
+.synopsis{
+    border:2px solid black;
+    text-align:center;
+
+    
+    
+}
+
+.synopsis-text{
+        text-align:left
+}
+.synopsis-text-box{
+    display:flex;
+}
+.synopsis-text-box div {
+    width:35vw;
+    height:15vh;
+}
+
+p{
+    white-space:pre-line;
+}

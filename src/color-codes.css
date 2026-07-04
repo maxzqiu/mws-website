@@ -1,0 +1,29 @@
+.color-yellow{
+    color:rgba(201, 201, 38, 0.805);
+     -webkit-text-stroke: 0.3px black;
+     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.color-orange{
+    color:orange;
+     -webkit-text-stroke: 0.3px black;
+     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.color-red{
+    color:red;
+     -webkit-text-stroke: 0.3px black;
+     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.color-purple{
+    color:purple;
+     -webkit-text-stroke: 0.3px black;
+     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.color-green{
+    color:green;
+     -webkit-text-stroke: 0.3px black;
+     font-family:Verdana, Geneva, Tahoma, sans-serif
+}

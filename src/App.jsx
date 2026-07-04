@@ -6,8 +6,10 @@ import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import Forecasts from "./detailedForecasts"
 import Radar from "./radar"
 import { LOCATIONS, UNITS, PRODUCTS, MARINELOCATIONS, MARINEPRODUCTS} from "./directory.jsx"
-
-
+import Synopsis from "./synopsis.jsx"
+import ForecastDiscussion from "./forecastDiscussion.jsx"
+import MWSForecasts from "./mwsForecasts.jsx"
+import './color-codes.css'
 
 
 export function Presentations(){
@@ -150,11 +152,36 @@ export function Home(){
   )
 }
 
+function ForecastsNavBar(){
+  return (
+    <>
+      <h3>Forecasts</h3>
+      <ul>
+        <li><Link to="/forecasts/detailed-forecasts">Land Forecasts</Link></li>
+        <li><Link to="/forecasts/detailed-forecasts/marine">National Weather Service Marine Forecasts</Link></li>
+        <li><Link to="/forecasts/forecast-discussion">Forecaster's Discussion</Link></li>
+        <li><Link to="/forecasts/thunderstorms">Thunderstorm Outlook</Link></li>
+        <li><Link to="/forecasts/qpf">6 Hour Rainfall Forecasts</Link></li>
+        <li><Link to="/forecasts/heatrisk">Excessive Heat Forecasts</Link></li>
+        <li><Link to="/forecasts/tropical">Tropical Weather Forecast</Link></li>
+        <li><Link to="/forecasts/excessiverain">Excessive Rainfall Forecast</Link></li>
+        <li><Link to="/forecasts/fireweather">Fire Weather Forecast</Link></li>
+        <li><Link to="/forecasts/densefog">Dense Fog Forecast</Link></li>
+
+      </ul>
+      
+    </>
+  )
+}
+
 export function NavBar(){
   let [checked,setChecked]=useState(false);
   
   return (
     <>
+      <div className="nav-parent-container">
+
+      
       <nav>
       <button
         className="toggle-menu"
@@ -185,6 +212,7 @@ export function NavBar(){
           
         </ul>
       </nav>
+      </div>
     </>
   )
 }
@@ -210,39 +238,44 @@ function App() {
         </div>
         
         <h4>Welcome to our website! </h4>
-        <h3 className="yellow-header">PLEASE NOTE: THE MWS WEBSITE WILL BE UNDERGOING SIGNIFICANT WEBSITE UPGRADES. INTERMITTENT OUTAGES/SLOWDOWNS ARE POSSIBLE. </h3>
+        
         <br></br>
-        <label htmlFor="time"><b>CURRENT TIME</b></label>
-        <table id="time" className="time">
-          <tbody>
-            <tr>
-              <th>LOCAL</th>
+        <div className="time">
+            <label htmlFor="time"><b>CURRENT TIME</b></label>
+            <table id="time" >
+              <tbody>
+                <tr>
+                  <th>LOCAL</th>
+                  
+                  <th>UTC</th>
+                </tr>
+                <tr>
+                  <td>{time}</td>
+                  <td>{utcTime}</td>
+                </tr>
+              </tbody>
               
-              <th>UTC</th>
-            </tr>
-            <tr>
-              <td>{time}</td>
-              <td>{utcTime}</td>
-            </tr>
-          </tbody>
-          
-        </table>
+            </table>
+        </div>
+        
 
+        <Synopsis />
         
-        
-        <NavBar />
+        <NavBar  />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/forecasts" element={<ForecastsNavBar />}></Route>
           <Route path="/presentations" element={<Presentations />}></Route>
           <Route path="/weather-reports" element={<WeatherReports />}></Route>
           <Route path="/weather-reports/minnesota" element={<MNWeatherReports />}></Route>
-          <Route path="/forecasts" element={
+          <Route path="/forecasts/detailed-forecasts" element={
             <>
               
-              <button className="go-to-marine"><Link to="/forecasts/marine">Click here for marine forecasts.</Link></button>
+              <button className="go-to-marine"><Link to="/forecasts/detailed-forecasts/marine">Click here for marine forecasts.</Link></button>
               <h2>MWS Detailed Forecasts</h2>
-              <Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} area="land" />
+              <MWSForecasts specific={null} />
+              {/*<Forecasts products={PRODUCTS} locations={LOCATIONS} units={UNITS} area="land" />*/}
             </>}></Route>
           <Route path="/presentations/santa-ana-winds-in-southern-california" element={<CreatePage 
           title="Santa Ana Winds in Southern California and Analysis on the Jan 7-8, 2025 Santa Ana Wind Event That Fueled The Devastating LA Wildfires"
@@ -274,10 +307,10 @@ function App() {
           <Route path="/presentations/active-wildfire-season-2024" 
           element={<CreatePage title="An Active Wildfire Season is Expected In Fall 2024"
           name="/Very-Active-Wildfire-Season.pdf"/>}></Route>
-          <Route path="/forecasts/marine" 
+          <Route path="/forecasts/detailed-forecasts/marine" 
           element={
             <>
-            <h2>MWS Detailed Marine Forecasts</h2>
+            <h2>National Weather Service Detailed Marine Forecasts</h2>
               <Forecasts products={MARINEPRODUCTS} locations={MARINELOCATIONS} units={UNITS} area={"marine"} />
             </>}></Route>
           <Route path="/info/wet_bulb_globe_temp" element={
@@ -286,8 +319,66 @@ function App() {
           <Route path="/radar" element={
             <Radar />
           }></Route>
+          <Route path="/forecasts/forecast-discussion" element={
+            <ForecastDiscussion />
+          }></Route>
+
+          <Route path="/forecasts/thunderstorms" element={
+            <>
+              <h2>Thunderstorm Outlook</h2>
+              <MWSForecasts specific="thunderstorms" />
+            </>
+            
+          }></Route>
+
+          <Route path="/forecasts/heatrisk" element={
+            <>
+              <h2>Excessive Heat Forecasts</h2>
+              <MWSForecasts specific="heatrisk" />
+            </>
+            
+          }></Route>
           
-          
+
+          <Route path="/forecasts/qpf" element={
+            <>
+              <h2>6 Hour Rainfall Forecasts</h2>
+              <MWSForecasts specific="quantitativePrecipitation" />
+            </>
+            
+          }></Route>
+
+          <Route path="/forecasts/tropical" element={
+            <>
+              <h2>Tropical Weather Forecast</h2>
+              <MWSForecasts specific="tropical" />
+            </>
+            
+          }></Route>
+
+          <Route path="/forecasts/excessiverain" element={
+            <>
+              <h2>Excessive Rainfall Forecast</h2>
+              <MWSForecasts specific="excessiveRain" />
+            </>
+            
+          }></Route>
+
+          <Route path="/forecasts/fireweather" element={
+            <>
+              <h2>Fire Weather Forecast</h2>
+              <MWSForecasts specific="fireWeather" />
+            </>
+            
+          }></Route>
+
+           <Route path="/forecasts/densefog" element={
+            <>
+              <h2>Dense Fog Forecast</h2>
+              <MWSForecasts specific="denseFog" />
+            </>
+            
+          }></Route>
         </Routes>
         <br></br>
         <br></br>

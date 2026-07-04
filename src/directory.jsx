@@ -30,6 +30,7 @@ export const UNITS={
   "snowfallAmount":"Inches",
   "snowLevel":"Feet",
   "iceAccumulation":"Inches",
+  "initTime":"Initial Time"
 
   
 }
