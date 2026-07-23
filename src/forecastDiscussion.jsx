@@ -38,12 +38,20 @@ function ForecastDiscussion(){
                     <div className="synopsis">
                         <h4>Forecaster's Discussion</h4>
                         <p>Updated: {(new Date(data.time[0].time)).toString()}</p>
-
-                        <p><strong>Next 5 Days: </strong>{data["shortterm"][0]["shortterm"]}</p>
-                        <p><strong>Extended Range Discussion: </strong>{data["longterm"][0]["longterm"]}</p>
-                        <p><strong>MARINE: </strong>{data["marine"][0]["marine"]}</p>
+                        <div className="synopsis-text-box">
+                            <p className="synopsis-text"><strong>Next 5 Days: </strong>{data["shortterm"][0]["shortterm"]}</p>
+                        </div>
+                        <div className="synopsis-text-box">
+                            <p className="synopsis-text"><strong>Extended Range Discussion: </strong>{data["longterm"][0]["longterm"]}</p>
+                        </div>
+                        <div className="synopsis-text-box">
+                            <p className="synopsis-text"><strong>MARINE: </strong>{data["marine"][0]["marine"]}</p>
+                        </div>
                         
-                        <p><strong>ADDITIONAL NOTES/REMARKS: </strong>{data["remarks"][0]["remarks"]}</p>
+                        <div className="synopsis-text-box">
+                            <p className="synopsis-text"><strong>ADDITIONAL NOTES/REMARKS: </strong>{data["remarks"][0]["remarks"]}</p>
+                        </div>
+                        
                     </div>
                     
     
