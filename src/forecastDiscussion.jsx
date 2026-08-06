@@ -21,7 +21,7 @@ function ForecastDiscussion(){
                     body: JSON.stringify(payload)
                 };
                   
-                let res = await fetch("http://https://server.maxweatherservice.com/api/request", options);
+                let res = await fetch("https://server.maxweatherservice.com/api/request", options);
                 let response=await res.json();
                 
                 setData(response);
