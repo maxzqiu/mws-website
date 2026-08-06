@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import './forecastDiscussion.css'
+
 
 function ForecastDiscussion(){
     let [data,setData]=useState(null);
@@ -19,7 +21,7 @@ function ForecastDiscussion(){
                     body: JSON.stringify(payload)
                 };
                   
-                let res = await fetch("https://server.maxweatherservice.com/api/request", options);
+                let res = await fetch("http://https://server.maxweatherservice.com/api/request", options);
                 let response=await res.json();
                 
                 setData(response);
@@ -35,28 +37,28 @@ function ForecastDiscussion(){
         }else {
             return (
                 <>
-                    <div className="synopsis">
+                    <div className="forecast-discussion">
                         <h4>Forecaster's Discussion</h4>
                         <p>Updated: {(new Date(data.time[0].time)).toString()}</p>
-                        <div className="synopsis-text-box">
+                        <div className="forecast-discussion-text-box">
                             <div></div>
-                                <p className="synopsis-text"><strong>Next 5 Days: </strong>{data["shortterm"][0]["shortterm"]}</p>
-                            <div></div>
-                        </div>
-                        <div className="synopsis-text-box">
-                            <div></div>
-                                <p className="synopsis-text"><strong>Extended Range Discussion: </strong>{data["longterm"][0]["longterm"]}</p>
+                                <p className="forecast-discussion-text"><strong>Next 5 Days: </strong>{data["shortterm"][0]["shortterm"]}</p>
                             <div></div>
                         </div>
-                        <div className="synopsis-text-box">
+                        <div className="forecast-discussion-text-box">
                             <div></div>
-                                <p className="synopsis-text"><strong>MARINE: </strong>{data["marine"][0]["marine"]}</p>
+                                <p className="forecast-discussion-text"><strong>Extended Range Discussion: </strong>{data["longterm"][0]["longterm"]}</p>
+                            <div></div>
+                        </div>
+                        <div className="forecast-discussion-text-box">
+                            <div></div>
+                                <p className="forecast-discussion-text"><strong>MARINE: </strong>{data["marine"][0]["marine"]}</p>
                             <div></div>
                         </div>
                         
-                        <div className="synopsis-text-box">
+                        <div className="forecast-discussion-text-box">
                             <div></div>
-                                <p className="synopsis-text"><strong>ADDITIONAL NOTES/REMARKS: </strong>{data["remarks"][0]["remarks"]}</p>
+                                <p className="forecast-discussion-text"><strong>ADDITIONAL NOTES/REMARKS: </strong>{data["remarks"][0]["remarks"]}</p>
                             <div></div>
                         </div>
                         

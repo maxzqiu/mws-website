@@ -1,0 +1,21 @@
+.forecast-discussion{
+    border:2px solid black;
+    text-align:center;
+
+    
+    
+}
+
+.forecast-discussion-text{
+        text-align:left
+}
+.forecast-discussion-text-box{
+    display:flex;
+    margin-right:5vw;
+    margin-left:5vw;
+}
+
+
+p{
+    white-space:pre-line;
+}
