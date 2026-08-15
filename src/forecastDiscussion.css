@@ -9,12 +9,21 @@
 .forecast-discussion-text{
         text-align:left
 }
-.forecast-discussion-text-box{
-    display:flex;
-    margin-right:5vw;
-    margin-left:5vw;
-}
 
+@media (min-width:1000px){
+    .forecast-discussion-text-box{
+        display:flex;
+        margin-right:25vw;
+        margin-left:25vw;
+    }
+}
+@media (max-width:1000px){
+    .forecast-discussion-text-box{
+        display:flex;
+        margin-right:5vw;
+        margin-left:5vw;
+    }
+}
 
 p{
     white-space:pre-line;
