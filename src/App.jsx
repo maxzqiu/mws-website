@@ -162,11 +162,13 @@ function ForecastsNavBar(){
         <li><Link to="/forecasts/forecast-discussion">Forecaster's Discussion</Link></li>
         <li><Link to="/forecasts/thunderstorms">Thunderstorm Outlook</Link></li>
         <li><Link to="/forecasts/qpf">6 Hour Rainfall Forecasts</Link></li>
+        <li><Link to="/forecasts/24HourRainfall">24 Hour Rainfall Forecasts</Link></li>
         <li><Link to="/forecasts/heatrisk">Excessive Heat Forecasts</Link></li>
         <li><Link to="/forecasts/tropical">Tropical Weather Forecast</Link></li>
         <li><Link to="/forecasts/excessiverain">Excessive Rainfall Forecast</Link></li>
         <li><Link to="/forecasts/fireweather">Fire Weather Forecast</Link></li>
         <li><Link to="/forecasts/densefog">Dense Fog Forecast</Link></li>
+        
 
       </ul>
       
@@ -376,6 +378,14 @@ function App() {
             <>
               <h2>Dense Fog Forecast</h2>
               <MWSForecasts specific="denseFog" />
+            </>
+            
+          }></Route>
+
+          <Route path="/forecasts/24HourRainfall" element={
+            <>
+              <h2>24 Hour Rainfall Forecast</h2>
+              <MWSForecasts specific="24HourRainfall" />
             </>
             
           }></Route>

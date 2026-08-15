@@ -170,7 +170,7 @@ function MWSForecasts({specific}) {
       };
       
       try {
-        let res = await fetch("https://server.maxweatherservice.com/api/request", options);
+        let res = await fetch("http://server.maxweatherservice.com/api/request", options);
         let response = await res.json();
         
        
@@ -219,7 +219,7 @@ function MWSForecasts({specific}) {
         ):(
           <select className="forecast-select-field" id="product-selection" value={product} onChange={(e) => setProduct(e.target.value)}>
           {Object.keys(data[location] || {}).map((i,key)=>{
-            if (i=="thunderstorms" || i=="quantitativePrecipitation" || i=="heatrisk" || i=="tropical" || i=="excessiveRain" || i=="fireWeather" || i=="denseFog"){
+            if (i=="thunderstorms" || i=="quantitativePrecipitation" || i=="heatrisk" || i=="tropical" || i=="excessiveRain" || i=="fireWeather" || i=="denseFog" || i=="24HourRainfall"){
               return;
             } else {
               return (
