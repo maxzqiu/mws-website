@@ -20,14 +20,16 @@ p {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+
+
 nav ul div  {
   display:flex;
   justify-content:space-around;
   list-style-type:none;
   background-color:rgb(213, 213, 204);
   /*margin-right:clamp(20vw,25vw,900px);*/
-  margin-top:50px;
-  margin-bottom:50px;
+  
+  
   margin-right:40px;
   font-family:sans-serif;
   font-size:24px;
@@ -55,6 +57,7 @@ a:hover{
 
 .logo{
   width:80px;
+  margin-right:1em;
 }
 
 .about{
@@ -150,8 +153,20 @@ table, tr, td {
   border-width:2px;
   border-color:black;
   padding:0.5em;
+  margin:5vh;
+  
 
+}
 
+.news *{
+  display:flex;
+  justify-content: center;
+  font-size:clamp(12px,2.5vh,30px);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.news a:hover{
+  background-color:transparent
 }
 
 

@@ -1,0 +1,85 @@
+.briefing-page-synopsis-and-time-container{
+    display:flex;
+}
+
+.briefing-page-body > *{
+    display:flex;
+    justify-content: center;
+}
+
+.briefing-page-body {
+    border:2px solid black;
+    margin:5vh
+}
+
+h2 {
+  font-size:clamp(12px,2.5vh,30px);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.forecast-parent-container{
+    display:flex
+}
+
+.forecast-parent-container table{
+    margin:0.75em;
+}
+
+.briefing-page-location-selection{
+    display:flex;
+    justify-content: center;
+    label{
+        margin-right:0.25em;
+        font-size:clamp(12px,2.5vh,30px);
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+    select option {
+        margin-right:0.25em;
+        font-size:clamp(12px,2.5vh,30px);
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+}
+
+
+
+.situation-overview-hazards-table tbody tr td{
+    
+    border:0px transparent;
+    width:30vw;
+    height:1.2em;
+    
+    
+    margin:0px;
+    padding:0px;
+}
+
+.situation-overview-hazards-table {
+    padding:10px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    height: auto;
+}
+
+.situation-overview-hazards-table tbody tr{
+    height:auto
+}
+
+.hazards-table-spacer-row{
+    height:100%;
+}
+
+.briefing-page-hazard-alert{
+    color:red;
+}
+
+.forecast-discussion-icon{
+    width:3em;
+    height:3em;
+}
+
+.briefing-page-forecast-discussion-link {
+  font-size:clamp(12px,2.5vh,30px);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+

@@ -1,22 +1,27 @@
 .synopsis{
+    display:flex;
     border:2px solid black;
-    text-align:center;
-
-    
-    
+    margin:1em;
 }
 
 .synopsis-text{
-        text-align:left
+    text-align:left
 }
-.synopsis-text-box{
-    display:flex;
-}
+
 .synopsis-text-box div {
-    width:35vw;
+    width:40vw;
     height:15vh;
 }
 
 p{
     white-space:pre-line;
+}
+
+.synopsis-container-header{
+    display:flex;
+    align-items:center;
+    border:2px solid black;
+    margin:1em;
+    padding:1em;
+    background-color:rgb(24, 135, 175)
 }

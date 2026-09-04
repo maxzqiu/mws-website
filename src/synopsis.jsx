@@ -40,15 +40,24 @@ function Synopsis(){
     }else {
         return (
             <>
-                <div className="synopsis">
-                    <h4>DAILY SYNOPSIS</h4>
-                    <p>Last issued {new Date(parseInt((data.time[0].time))).toString()}</p>
 
-                    <div className="synopsis-text-box">
-                        <div></div>
-                        <p className="synopsis-text">{data.text[0].text}</p>
-                        <div></div>
+                <div className="synopsis">
+                    
+                    <div className="synopsis-container-header">
+                        <h4>DAILY SYNOPSIS</h4>
                     </div>
+                    
+                    
+                    <div>
+                        <p>Last issued {new Date(parseInt((data.time[0].time))).toString()}</p>
+                    
+                    <div className="synopsis-text-box">
+                       
+                        <p className="synopsis-text">{data.text[0].text}</p>
+                        
+                    </div>
+                    </div>
+                    
                     
                 </div>
                 

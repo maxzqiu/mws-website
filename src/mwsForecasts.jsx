@@ -74,7 +74,7 @@ function decode(product,value){
   }
 }
 
-function DisplayForecastData({ data, location, product, scroll }) {
+export function DisplayForecastData({ data, location, product, scroll }) {
   
   if (!data || !location || !product || !data[location] || !data[location][product]) {
     return <tr><td>No data available</td></tr>;
@@ -145,6 +145,7 @@ function DisplayForecastData({ data, location, product, scroll }) {
   }
   
 }
+
 
 function splitcamelCase(word){
   return word

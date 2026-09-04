@@ -9,6 +9,7 @@ import { LOCATIONS, UNITS, PRODUCTS, MARINELOCATIONS, MARINEPRODUCTS} from "./di
 import Synopsis from "./synopsis.jsx"
 import ForecastDiscussion from "./forecastDiscussion.jsx"
 import MWSForecasts from "./mwsForecasts.jsx"
+import BriefingPage from "./briefingPage.jsx"
 import './color-codes.css'
 
 
@@ -129,22 +130,20 @@ export function About(){
 export function Home(){
   return (
     <>
+    <BriefingPage />
       <div className="news">
         <h4 className="mws_info">MWS Info</h4>
         <Link to="/info/daily-hazards-table"><button>MWS General Forecast Product: Daily Hazards Table Info</button></Link>
         <br></br>
         <Link to="/info/wet_bulb_globe_temp"><button>What is Wet Bulb Globe Temperature?</button></Link>
+        <br></br>
+        <a href="https://forecasts-mws.vercel.app"><button>7-Day Forecasts</button></a>
+        <br></br>
+        <a href="https://observation-mws.vercel.app"><button>Current Observations</button></a>
       </div>
       
       <div className="home">
-        <div>
-        <a href="https://forecasts-mws.vercel.app"><img className="icon" src="\Screenshot (2674).png" alt="Forecasts"></img></a>
-        <p>7-Day Forecasts</p>
-        </div>
-        <div>
-        <a href="https://observation-mws.vercel.app"><img className="icon" src="\weather_station.png" alt="Observations"></img></a>
-        <p>Current Observations</p>
-        </div>
+        
       </div>
       
       
@@ -160,7 +159,7 @@ function ForecastsNavBar(){
         <li><Link to="/forecasts/detailed-forecasts">Land Forecasts</Link></li>
         <li><Link to="/forecasts/detailed-forecasts/marine">National Weather Service Marine Forecasts</Link></li>
         <li><Link to="/forecasts/forecast-discussion">Forecaster's Discussion</Link></li>
-        <li><Link to="/forecasts/thunderstorms">Thunderstorm Outlook</Link></li>
+        
         <li><Link to="/forecasts/qpf">6 Hour Rainfall Forecasts</Link></li>
         <li><Link to="/forecasts/24HourRainfall">24 Hour Rainfall Forecasts</Link></li>
         <li><Link to="/forecasts/heatrisk">Excessive Heat Forecasts</Link></li>
@@ -220,14 +219,7 @@ export function NavBar(){
 }
 
 function App() {
-  let [time,setTime]=useState(null);
-  let [utcTime,setUtcTime]=useState(null);
-  function getTime(){
-    setTime(new Date().toLocaleString("en-GB", {timeZone: "America/Los_Angeles"}).toString().substring(12,20))
-    setUtcTime((new Date().toUTCString().substring(17,26)))
-  }
-
-  setInterval(getTime,1000)
+  
   
   return (
     <>
@@ -235,35 +227,21 @@ function App() {
       
       <Router>
         <div className="one-line">
-          <h2>Max's Weather Service Newport Beach CA</h2>
           <img className="logo" src=".\Screenshot (1053).png" alt="MWS Logo"></img>
+          <h2>Max's Weather Service Newport Beach CA</h2>
+          
         </div>
         
         <h4>Welcome to our website! </h4>
         
         <br></br>
-        <div className="time">
-            <label htmlFor="time"><b>CURRENT TIME</b></label>
-            <table id="time" >
-              <tbody>
-                <tr>
-                  <th>LOCAL</th>
-                  
-                  <th>UTC</th>
-                </tr>
-                <tr>
-                  <td>{time}</td>
-                  <td>{utcTime}</td>
-                </tr>
-              </tbody>
-              
-            </table>
-        </div>
-        
-
-        <Synopsis />
-        
         <NavBar  />
+        
+        
+        
+        
+        
+        
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
@@ -325,13 +303,7 @@ function App() {
             <ForecastDiscussion />
           }></Route>
 
-          <Route path="/forecasts/thunderstorms" element={
-            <>
-              <h2>Thunderstorm Outlook</h2>
-              <MWSForecasts specific="thunderstorms" />
-            </>
-            
-          }></Route>
+          
 
           <Route path="/forecasts/heatrisk" element={
             <>
