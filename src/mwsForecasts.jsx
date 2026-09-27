@@ -177,7 +177,7 @@ function MWSForecasts({specific}) {
       };
       
       try {
-        let res = await fetch("http://localhost:8000/api/request", options);
+        let res = await fetch("https://server.maxweatherservice.com/api/request", options);
         let response = await res.json();
         
        
