@@ -104,6 +104,12 @@ export function DisplayForecastData({ data, location, product, scroll }) {
           } else if (product=="temperature" && data[location][product][timeStr]>=95){
             
             return "orange-alert";
+          } else if (product=="maxTemperature" && data[location][product][timeStr]>=95){
+            
+            return "orange-alert";
+          } else if (product=="minTemperature" && data[location][product][timeStr]<=40){
+            
+            return "orange-alert";
           } else if ((product=="apparentTemperature" && data[location][product][timeStr]<=40)){
             
             return "orange-alert"; 
@@ -171,7 +177,7 @@ function MWSForecasts({specific}) {
       };
       
       try {
-        let res = await fetch("https://server.maxweatherservice.com/api/request", options);
+        let res = await fetch("http://localhost:8000/api/request", options);
         let response = await res.json();
         
        
@@ -244,6 +250,9 @@ function MWSForecasts({specific}) {
       }}>Back</button>
 
       <button className="small-button" onClick={()=>{
+        if (product=="maxTemperature" || product=="minTemperature" ){
+          return;
+        }
         setScroll(scroll=>scroll+1)
       }}>Next</button>
 
